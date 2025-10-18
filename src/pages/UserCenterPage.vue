@@ -13,7 +13,7 @@
                 class="w-full text-slate-900 px-4 py-3 font-medium flex items-center gap-2 border-b border-slate-200 hover:bg-slate-50 transition cursor-pointer"
               >
                 <User class="h-5 w-5" />
-                <span>个人中心</span>
+                <span>个人中���</span>
                 <ChevronDown
                   class="h-4 w-4 ml-auto transition-transform duration-300"
                   :style="{ transform: expandedGroups.personal ? 'rotate(0deg)' : 'rotate(-90deg)' }"
@@ -139,7 +139,7 @@
               </div>
             </div>
 
-            <!-- 营销活动组 -->
+            <!-- 营销���动组 -->
             <div>
               <button
                 @click="expandedGroups.marketing = !expandedGroups.marketing"
@@ -316,7 +316,7 @@
 
           </div>
 
-          <!-- 右侧主要内容 -->
+          <!-- 右侧主��内容 -->
           <div class="flex-1 min-w-0 p-6">
             <!-- 顶部标题栏 -->
             <div class="flex items-center justify-between mb-6">
@@ -348,7 +348,7 @@
 
               <!-- VIP等级 -->
               <div class="p-6 border-b border-slate-200">
-                <h3 class="font-semibold text-slate-900 mb-4">金红元 ��★★★★</h3>
+                <h3 class="font-semibold text-slate-900 mb-4">金红元 ���★★★★</h3>
                 <div class="grid grid-cols-5 gap-4">
                   <div class="text-center">
                     <div class="inline-block bg-primary text-white px-3 py-1 rounded text-sm mb-2">
@@ -420,7 +420,7 @@
               <!-- 商品销售排行 -->
               <div class="p-6 border-b border-slate-200">
                 <div class="flex items-center justify-between mb-4">
-                  <h3 class="font-semibold text-slate-900">商品销售排行</h3>
+                  <h3 class="font-semibold text-slate-900">商品销售排���</h3>
                   <div class="text-sm text-slate-500">2025-09</div>
                 </div>
                 <el-table :data="topProducts" style="width: 100%" size="small">
@@ -475,7 +475,7 @@
             <!-- 订单通知面板 -->
             <OrderNotificationPage v-else-if="activeMenu === 'order-notification'" />
 
-            <!-- 售后通知面板 -->
+            <!-- 售���通知面板 -->
             <AfterSalesNotificationPage v-else-if="activeMenu === 'after-sales-notification'" />
 
             <!-- 平台消息面板 -->
@@ -499,11 +499,20 @@
             <!-- 返现活动面板 -->
             <CashbackActivityPage v-else-if="activeMenu === 'sales'" />
 
+            <!-- 我的余额面板 -->
+            <MyBalancePage v-else-if="activeMenu === 'my-balance'" />
+
             <!-- 询价单面板 -->
             <InquiryOrderPage v-else-if="activeMenu === 'inquiry-order'" />
 
             <!-- 我的订单面板 -->
             <MyOrderPage v-else-if="activeMenu === 'orders'" />
+
+            <!-- 我的账单面板 -->
+            <MyInvoicesPage v-else-if="activeMenu === 'my-invoices'" />
+
+            <!-- 我的采购券面板 -->
+            <MyVouchersPage v-else-if="activeMenu === 'my-vouchers'" />
 
             <!-- 平台载单面板 -->
             <PlatformOrderPage v-else-if="activeMenu === 'platform-orders'" />
@@ -523,11 +532,17 @@
             <!-- 库存更新面板 -->
             <InventoryUpdatePage v-else-if="activeMenu === 'inventory-update'" />
 
+            <!-- 更新记录面板 -->
+            <UpdateLogPage v-else-if="activeMenu === 'update-log'" />
+
             <!-- 批量下单面板 -->
             <BatchOrderPage v-else-if="activeMenu === 'batch-orders'" />
 
             <!-- 下载中心面板 -->
             <DownloadCenterPage v-else-if="activeMenu === 'download-center'" />
+
+            <!-- 支付账号管理面板 -->
+            <PaymentAccountPage v-else-if="activeMenu === 'payment-account'" />
 
             <!-- 异常订单面板 -->
             <ExceptionOrderPage v-else-if="activeMenu === 'exception-orders'" />
@@ -581,6 +596,7 @@ import ProductNotificationPage from '@/pages/ProductNotificationPage.vue'
 import CashbackActivityPage from '@/pages/CashbackActivityPage.vue'
 import InquiryOrderPage from '@/pages/InquiryOrderPage.vue'
 import MyOrderPage from '@/pages/MyOrderPage.vue'
+import MyInvoicesPage from '@/pages/MyInvoicesPage.vue'
 import PlatformOrderPage from '@/pages/PlatformOrderPage.vue'
 import BatchOrderPage from '@/pages/BatchOrderPage.vue'
 import ExceptionOrderPage from '@/pages/ExceptionOrderPage.vue'
@@ -591,6 +607,10 @@ import OrderSettingsPage from '@/pages/OrderSettingsPage.vue'
 import SkuMappingPage from '@/pages/SkuMappingPage.vue'
 import LogisticsMappingPage from '@/pages/LogisticsMappingPage.vue'
 import InventoryUpdatePage from '@/pages/InventoryUpdatePage.vue'
+import UpdateLogPage from '@/pages/UpdateLogPage.vue'
+import MyBalancePage from '@/pages/MyBalancePage.vue'
+import MyVouchersPage from '@/pages/MyVouchersPage.vue'
+import PaymentAccountPage from '@/pages/PaymentAccountPage.vue'
 
 const activeMenu = ref('info')
 const expandedGroups = ref<Record<string, boolean>>({
@@ -619,7 +639,7 @@ const menuLabels: Record<string, string> = {
   'shopping-cart': '购物车',
   products: '商品管理',
   'listing-push': '刊登推送列表',
-  'listing-products': '刊登商品列表',
+  'listing-products': '刊登商��列表',
   'brand-auth': '品牌授权',
   'product-notification': '商品通知',
   sales: '返现活动',
@@ -632,7 +652,7 @@ const menuLabels: Record<string, string> = {
   'download-center': '下载中心',
   customers: '客户服务',
   'my-balance': '我的余额',
-  'my-invoices': '我的账单',
+  'my-invoices': '我��账单',
   'my-vouchers': '我的采购券',
   'payment-account': '支付账号管理',
   'platform-auth': '平台授权',
