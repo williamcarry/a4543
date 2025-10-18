@@ -514,6 +514,15 @@
             <!-- 载单设置面板 -->
             <OrderSettingsPage v-else-if="activeMenu === 'order-settings'" />
 
+            <!-- SKU映射面板 -->
+            <SkuMappingPage v-else-if="activeMenu === 'sku-mapping'" />
+
+            <!-- 物流映射面板 -->
+            <LogisticsMappingPage v-else-if="activeMenu === 'logistics-mapping'" />
+
+            <!-- 库存更新面板 -->
+            <InventoryUpdatePage v-else-if="activeMenu === 'inventory-update'" />
+
             <!-- 批量下单面板 -->
             <BatchOrderPage v-else-if="activeMenu === 'batch-orders'" />
 
@@ -579,6 +588,9 @@ import AfterSalesManagementPage from '@/pages/AfterSalesManagementPage.vue'
 import DownloadCenterPage from '@/pages/DownloadCenterPage.vue'
 import PlatformAuthPage from '@/pages/PlatformAuthPage.vue'
 import OrderSettingsPage from '@/pages/OrderSettingsPage.vue'
+import SkuMappingPage from '@/pages/SkuMappingPage.vue'
+import LogisticsMappingPage from '@/pages/LogisticsMappingPage.vue'
+import InventoryUpdatePage from '@/pages/InventoryUpdatePage.vue'
 
 const activeMenu = ref('info')
 const expandedGroups = ref<Record<string, boolean>>({
@@ -616,7 +628,7 @@ const menuLabels: Record<string, string> = {
   'platform-orders': '平��载单',
   'batch-orders': '批量下单',
   'exception-orders': '异常订单',
-  'after-sales-management': '售后管理',
+  'after-sales-management': '���后管理',
   'download-center': '下载中心',
   customers: '客户服务',
   'my-balance': '我的余额',

@@ -17,7 +17,7 @@
             </label>
             <label class="inline-flex items-center gap-2 select-none cursor-pointer">
               <input id="orderSetMapped" type="radio" class="h-4 w-4" value="0" v-model="platOrderSet" />
-              <span>只同步有作SKU映射的订单</span>
+              <span>只同步有SKU映射的订单</span>
             </label>
           </div>
           <div class="mt-3">
@@ -36,7 +36,7 @@
         <span class="inline-block">
           <label class="inline-flex items-center gap-2 mr-5 select-none leading-[28px] cursor-pointer">
             <input type="radio" class="h-4 w-4" value="true" v-model="autoUploadRaw" />
-            <span>开通</span>
+            <span>开启</span>
           </label>
           <label class="inline-flex items-center gap-2 mr-5 select-none leading-[28px] cursor-pointer">
             <input type="radio" class="h-4 w-4" value="false" v-model="autoUploadRaw" />
@@ -49,12 +49,8 @@
       <!-- 店铺规则设置 -->
       <div class="mt-4">
         <div class="ml-[160px]">
-          <div class="flex items-center justify-between">
-            <p class="leading-[34px]">店铺自动上传跟踪号规则设置</p>
-            <div class="relative">
-              <button type="button" class="px-[10px] h-[30px] text-xs border border-primary text-primary rounded">批量设置</button>
-            </div>
-          </div>
+          <p class="leading-[34px]">店铺自动上传跟踪号规则设置</p>
+          <button type="button" class="mt-2 px-[10px] h-[30px] text-xs border border-primary text-primary rounded">批量设置</button>
           <div class="overflow-x-auto mt-2">
             <table class="w-full border-collapse bg-white">
               <thead>
@@ -104,13 +100,13 @@
     <!-- 飞刊订单购买保障服务 -->
     <div class="border-t border-slate-200 pt-6 mt-6">
       <div>
-        <p class="inline-block w-[160px] text-right font-semibold leading-[38px] text-slate-900">飞刊订单购买保障服务：</p>
+        <p class="inline-block w-[200px] whitespace-nowrap text-right font-semibold leading-[38px] text-slate-900">飞刊订单购买保障服务：</p>
         <span class="inline-block align-middle text-slate-700">
           在飞刊向赛盈平台创建订单时，按如下设置自动购买保障服务。
           <a class="text-primary hover:underline" target="_blank" href="https://www.flasting.cn/order/salesorder/awaitingorder">前往飞刊</a>
         </span>
       </div>
-      <div class="ml-[160px] mt-2">
+      <div class="mt-2">
         <div class="overflow-x-auto">
           <table class="w-full border-collapse bg-white">
             <thead>
