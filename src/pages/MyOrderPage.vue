@@ -106,122 +106,204 @@
       </div>
 
       <!-- 搜索和筛选区 -->
-      <div class="space-y-2">
-        <!-- 第一行：订单号 select + 搜索框 (左对齐) | 下单时间 (右对齐) -->
-        <div class="flex gap-2 items-center justify-between">
-          <div class="flex items-center gap-2">
-            <select v-model="queryWay" class="px-3 py-2 border border-slate-300 rounded text-sm bg-white min-w-max">
-              <option value="0">订单号</option>
-              <option value="1">自定义单号</option>
-              <option value="2">跟踪号</option>
-              <option value="3">SKU</option>
-              <option value="4">商品名称</option>
-              <option value="5">收件人</option>
-            </select>
-            <input
-              v-model="searchKeyword"
-              type="text"
-              placeholder="默认搜索最近30天的单据，可调整时间范围"
-              class="w-64 px-3 py-2 border border-slate-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-            />
-          </div>
+      <div class="space-y-4">
+        <!-- 基础搜索区块 -->
+        <div class="border border-slate-200 rounded-lg p-4 bg-slate-50">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-3 items-end">
+            <!-- 搜索字段选择 + 搜索框 -->
+            <div class="lg:col-span-6 flex items-end gap-2">
+              <div class="flex-shrink-0">
+                <label class="block text-xs text-slate-600 font-medium mb-1">搜索方式</label>
+                <select v-model="queryWay" class="px-3 py-2 border border-slate-300 rounded text-sm bg-white min-w-max">
+                  <option value="0">订单号</option>
+                  <option value="1">自定义单号</option>
+                  <option value="2">跟踪号</option>
+                  <option value="3">SKU</option>
+                  <option value="4">商品名称</option>
+                  <option value="5">收件人</option>
+                </select>
+              </div>
+              <div class="flex-1">
+                <label class="block text-xs text-slate-600 font-medium mb-1">搜索关键词</label>
+                <input
+                  v-model="searchKeyword"
+                  type="text"
+                  placeholder="默认搜索最近30天的单据"
+                  class="w-full px-3 py-2 border border-slate-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                />
+              </div>
+            </div>
 
-          <div class="flex items-center gap-2 flex-shrink-0">
-            <label class="text-sm text-slate-700 whitespace-nowrap">下单时间：</label>
-            <input
-              type="date"
-              v-model="startTime"
-              class="px-3 py-2 border border-slate-300 rounded text-sm"
-            />
-            <span class="text-slate-500">-</span>
-            <input
-              type="date"
-              v-model="endTime"
-              class="px-3 py-2 border border-slate-300 rounded text-sm"
-            />
+            <!-- 下单时间范围 -->
+            <div class="lg:col-span-6 flex items-end gap-2">
+              <div class="flex-1">
+                <label class="block text-xs text-slate-600 font-medium mb-1">开始日期</label>
+                <input
+                  type="date"
+                  v-model="startTime"
+                  class="w-full px-3 py-2 border border-slate-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                />
+              </div>
+              <span class="text-slate-400 flex-shrink-0">至</span>
+              <div class="flex-1">
+                <label class="block text-xs text-slate-600 font-medium mb-1">结束日期</label>
+                <input
+                  type="date"
+                  v-model="endTime"
+                  class="w-full px-3 py-2 border border-slate-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                />
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- 更多筛选条件（可折叠） -->
-        <div v-if="showMoreFilters" class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-3 border-t border-slate-200">
-          <!-- 第一行 -->
-          <div class="flex items-center gap-2">
-            <label class="text-sm text-slate-700 w-24 flex-shrink-0">跟踪号状态：</label>
-            <select v-model="trackType" class="w-full px-3 py-2 border border-slate-300 rounded text-sm bg-white">
-              <option value="">全部</option>
-              <option value="0">未产生</option>
-              <option value="1">已产生</option>
-              <option value="2">已变更</option>
-            </select>
+        <!-- 高级筛选区块（可折叠） -->
+        <div v-if="showMoreFilters" class="border border-slate-200 rounded-lg p-4 bg-slate-50 space-y-3">
+          <h4 class="text-sm font-medium text-slate-900">高级筛选</h4>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+            <!-- 跟踪号状态 -->
+            <div>
+              <label class="block text-xs text-slate-600 font-medium mb-1">跟踪号状态</label>
+              <select v-model="trackType" class="w-full px-3 py-2 border border-slate-300 rounded text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                <option value="">全部</option>
+                <option value="0">未产生</option>
+                <option value="1">已产生</option>
+                <option value="2">已变更</option>
+              </select>
+            </div>
+
+            <!-- 创建方式 -->
+            <div>
+              <label class="block text-xs text-slate-600 font-medium mb-1">创建方式</label>
+              <select v-model="createWay" class="w-full px-3 py-2 border border-slate-300 rounded text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                <option value="">全部</option>
+                <option value="1">手动下单</option>
+                <option value="2">批量下单</option>
+                <option value="3">API下单</option>
+                <option value="4">平台载单</option>
+                <option value="5">售后订单</option>
+                <option value="6">飞刊载单</option>
+              </select>
+            </div>
+
+            <!-- 区域 -->
+            <div>
+              <label class="block text-xs text-slate-600 font-medium mb-1">区域</label>
+              <select v-model="warehouse" class="w-full px-3 py-2 border border-slate-300 rounded text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                <option value="">全部</option>
+                <option value="SZ0011">CA</option>
+                <option value="SZ0010">RU</option>
+                <option value="SZ0009">ES</option>
+                <option value="SZ0007">CZ</option>
+                <option value="SZ0006">HK</option>
+                <option value="SZ0005">FR</option>
+                <option value="SZ0004">DE</option>
+                <option value="SZ0002">CN</option>
+                <option value="SZ0003">UK</option>
+                <option value="SZ0001">US</option>
+              </select>
+            </div>
+
+            <!-- 币别 -->
+            <div>
+              <label class="block text-xs text-slate-600 font-medium mb-1">币别</label>
+              <select v-model="currency" class="w-full px-3 py-2 border border-slate-300 rounded text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                <option value="">全部</option>
+                <option value="USD">USD</option>
+                <option value="GBP">GBP</option>
+                <option value="EUR">EUR</option>
+                <option value="CAD">CAD</option>
+              </select>
+            </div>
+
+            <!-- 导出跟踪号 -->
+            <div>
+              <label class="block text-xs text-slate-600 font-medium mb-1">导出跟踪号</label>
+              <select v-model="exportType" class="w-full px-3 py-2 border border-slate-300 rounded text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                <option value="">全部</option>
+                <option value="1">已导出</option>
+                <option value="2">未导出</option>
+              </select>
+            </div>
+
+            <!-- VAT税务类型 -->
+            <div>
+              <label class="block text-xs text-slate-600 font-medium mb-1">VAT税务类型</label>
+              <select v-model="vatTaxType" class="w-full px-3 py-2 border border-slate-300 rounded text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                <option value="">全部</option>
+                <option value="1">个人卖家</option>
+                <option value="2">企业卖家</option>
+              </select>
+            </div>
+
+            <!-- 开票订单 -->
+            <div>
+              <label class="block text-xs text-slate-600 font-medium mb-1">开票订单</label>
+              <select v-model="isBillable" class="w-full px-3 py-2 border border-slate-300 rounded text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                <option value="">全部</option>
+                <option value="1">支持开票</option>
+                <option value="2">不支持开票</option>
+              </select>
+            </div>
+
+            <!-- 库存类型 -->
+            <div>
+              <label class="block text-xs text-slate-600 font-medium mb-1">库存类型</label>
+              <select v-model="orderType" class="w-full px-3 py-2 border border-slate-300 rounded text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                <option value="">全部</option>
+                <option value="1">公共</option>
+                <option value="2">圈货</option>
+                <option value="3">买断</option>
+              </select>
+            </div>
+
+            <!-- 自提订单 -->
+            <div>
+              <label class="block text-xs text-slate-600 font-medium mb-1">自提订单</label>
+              <select v-model="isPickUp" class="w-full px-3 py-2 border border-slate-300 rounded text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                <option value="">全部</option>
+                <option value="1">是</option>
+                <option value="0">否</option>
+              </select>
+            </div>
+
+            <!-- Label状态 -->
+            <div>
+              <label class="block text-xs text-slate-600 font-medium mb-1">Label状态</label>
+              <select v-model="labelStatus" class="w-full px-3 py-2 border border-slate-300 rounded text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                <option value="">全部</option>
+                <option value="10">待上传</option>
+                <option value="20">已上传</option>
+              </select>
+            </div>
+
+            <!-- VAT税号（单独占一行） -->
+            <div class="md:col-span-2 lg:col-span-1">
+              <label class="block text-xs text-slate-600 font-medium mb-1">VAT税号</label>
+              <input
+                v-model="vatNumber"
+                type="text"
+                placeholder="请输入VAT税号"
+                class="w-full px-3 py-2 border border-slate-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+              />
+            </div>
           </div>
-          <div class="flex items-center gap-2">
-            <label class="text-sm text-slate-700 w-24 flex-shrink-0">创建方式：</label>
-            <select v-model="createWay" class="w-full px-3 py-2 border border-slate-300 rounded text-sm bg-white">
-              <option value="">全部</option>
-              <option value="1">手动下单</option>
-              <option value="2">批量下单</option>
-              <option value="3">API下单</option>
-              <option value="4">平台载单</option>
-              <option value="5">售后订单</option>
-              <option value="6">飞刊载单</option>
-            </select>
-          </div>
-          
-          <!-- 第二行 -->
-          <div class="flex items-center gap-2">
-            <label class="text-sm text-slate-700 w-24 flex-shrink-0">区域：</label>
-            <select v-model="warehouse" class="w-full px-3 py-2 border border-slate-300 rounded text-sm bg-white">
-              <option value="">全部</option>
-              <option value="SZ0011">CA</option>
-              <option value="SZ0010">RU</option>
-              <option value="SZ0009">ES</option>
-              <option value="SZ0007">CZ</option>
-              <option value="SZ0006">HK</option>
-              <option value="SZ0005">FR</option>
-              <option value="SZ0004">DE</option>
-              <option value="SZ0002">CN</option>
-              <option value="SZ0003">UK</option>
-              <option value="SZ0001">US</option>
-            </select>
-          </div>
-          <div class="flex items-center gap-2">
-            <label class="text-sm text-slate-700 w-24 flex-shrink-0">币别：</label>
-            <select v-model="currency" class="w-full px-3 py-2 border border-slate-300 rounded text-sm bg-white">
-              <option value="">全部</option>
-              <option value="USD">USD</option>
-              <option value="GBP">GBP</option>
-              <option value="EUR">EUR</option>
-              <option value="CAD">CAD</option>
-            </select>
-          </div>
-          
-          <!-- 第三行 -->
-          <div class="flex items-center gap-2">
-            <label class="text-sm text-slate-700 w-24 flex-shrink-0">导出跟踪号：</label>
-            <select v-model="exportType" class="w-full px-3 py-2 border border-slate-300 rounded text-sm bg-white">
-              <option value="">全部</option>
-              <option value="1">已导出</option>
-              <option value="2">未导出</option>
-            </select>
-          </div>
-          
-          <!-- 第四行（单独一行） -->
-          <div></div> <!-- 空白占位，保持网格对齐 -->
         </div>
 
-        <!-- 按钮行：搜索 + 更多筛选条件 -->
+        <!-- 按钮行 -->
         <div class="flex gap-2 items-center justify-center">
           <button
             @click="searchOrders"
-            class="px-6 py-2 bg-primary text-white rounded text-sm hover:bg-primary-dark transition whitespace-nowrap h-10"
+            class="px-8 py-2 bg-primary text-white rounded font-medium text-sm hover:bg-primary-dark transition h-10"
           >
             搜索
           </button>
           <button
             @click="toggleMoreFilters"
-            class="px-4 py-2 border border-slate-300 text-slate-700 rounded text-sm hover:bg-slate-50 transition flex items-center gap-2"
+            class="px-4 py-2 border border-slate-300 text-slate-700 rounded text-sm hover:bg-slate-50 transition flex items-center gap-2 h-10"
           >
-            <span>更多筛选选项</span>
+            <span>{{ showMoreFilters ? '收起' : '高级筛选' }}</span>
             <svg class="w-4 h-4 transition-transform" :style="{ transform: showMoreFilters ? 'rotate(180deg)' : 'rotate(0)' }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
             </svg>
@@ -306,7 +388,7 @@
               </div>
             </div>
             <button class="px-3 py-1 text-sm text-slate-700 hover:text-slate-900">
-              发票批量下载
+              发票���量下载
             </button>
           </div>
           <button class="px-6 py-2 bg-primary text-white rounded text-sm hover:bg-primary-dark transition">
@@ -318,7 +400,7 @@
       <!-- 分页 -->
       <div v-if="filteredOrders.length > 0" class="border-t border-slate-200 bg-white px-4 py-3 flex items-center justify-between">
         <div class="text-sm text-slate-600">
-          共 {{ totalOrders }} 条 | 第 {{ currentPage }} 页
+          �� {{ totalOrders }} 条 | 第 {{ currentPage }} 页
         </div>
         <div class="flex items-center gap-2">
           <button
@@ -500,6 +582,12 @@ const currency = ref('')
 const createWay = ref('')
 const exportType = ref('')
 const warehouse = ref('')
+const vatTaxType = ref('')
+const vatNumber = ref('')
+const isBillable = ref('')
+const orderType = ref('')
+const isPickUp = ref('')
+const labelStatus = ref('')
 const showMoreFilters = ref(false)
 const showLabelUpload = ref(false)
 
@@ -702,6 +790,12 @@ const resetFilters = () => {
   createWay.value = ''
   exportType.value = ''
   warehouse.value = ''
+  vatTaxType.value = ''
+  vatNumber.value = ''
+  isBillable.value = ''
+  orderType.value = ''
+  isPickUp.value = ''
+  labelStatus.value = ''
   currentPage.value = 1
 }
 

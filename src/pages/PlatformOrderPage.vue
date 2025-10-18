@@ -1,320 +1,415 @@
 <template>
-  <div class="bg-white rounded-lg border border-slate-200 overflow-hidden">
-    <!-- 页面标题和订单类型筛选 tabs -->
-    <div class="px-6 py-4 border-b border-slate-200">
-      <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
-        <div class="flex flex-col">
-          <h2 class="text-xl font-semibold text-slate-900">平台载单</h2>
-          <!-- 订单类型筛选 tabs -->
-          <div class="flex flex-wrap gap-3 mt-4">
-            <button 
-              @click="filterOrders('all')" 
-              :class="[
-                'px-6 py-2 text-sm font-medium rounded-md border',
-                activeFilter === 'all' 
-                  ? 'bg-primary text-white border-primary' 
-                  : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-50'
-              ]"
-            >
-              全部
-            </button>
-            <button 
-              @click="filterOrders(' wholesale')" 
-              :class="[
-                'px-6 py-2 text-sm font-medium rounded-md border',
-                activeFilter === ' wholesale' 
-                  ? 'bg-purple-500 text-white border-purple-500' 
-                  : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-50'
-              ]"
-            >
-              批发
-            </button>
-            <button 
-              @click="filterOrders('dropshipping')" 
-              :class="[
-                'px-6 py-2 text-sm font-medium rounded-md border',
-                activeFilter === 'dropshipping' 
-                  ? 'bg-cyan-500 text-white border-cyan-500' 
-                  : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-50'
-              ]"
-            >
-              一件代发
-            </button>
-          </div>
-        </div>
-        <div class="flex flex-wrap items-start gap-3">
-          <div class="relative">
-            <input 
-              type="text" 
-              placeholder="订单号/商品名称/SKU" 
-              class="pl-10 pr-4 py-2 border border-slate-300 rounded-md text-sm w-64 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-              v-model="searchKeyword"
-              @keyup.enter="searchOrders"
-            >
-            <svg class="w-5 h-5 text-slate-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-            </svg>
-          </div>
-          <button 
-            @click="searchOrders"
-            class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-primary-dark transition"
-          >
-            搜索
-          </button>
-          <button 
-            @click="resetFilters"
-            class="px-4 py-2 border border-slate-300 text-slate-700 text-sm rounded-md hover:bg-slate-50 transition"
-          >
-            重置
-          </button>
-        </div>
+  <div class="flex flex-col gap-6">
+    <!-- 页面标题和说明 -->
+    <div class="bg-white rounded-lg border border-slate-200 p-6">
+      <div class="mb-6">
+        <h2 class="text-2xl font-semibold text-slate-900 mb-2">平台载单</h2>
+        <p class="text-sm text-slate-600">(即同步平台订单，只有"已授权"状态的账号才能进行载单。)</p>
       </div>
-    </div>
-    
-    <!-- 公告区域 -->
-    <div class="px-6 py-3 bg-yellow-50 border-b border-yellow-200">
-      <div class="flex items-start">
-        <svg class="w-5 h-5 text-yellow-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-        </svg>
-        <div class="ml-3">
-          <p class="text-sm text-yellow-800">
-            <span class="font-medium">重要提示：</span><br>
-            1.订单均为系统自动化推送并发货，若需要拦截订单，请务必在下单后及时申请拦截，实际拦截结果以系统告知为准 ；<br>
-            2.状态为配货中的订单实际还未发出，跟踪号有可能变更，对上传跟踪号后不能进行修改的平台，建议在状态为待收货时再将跟踪号导出上传；<br>
-            3.若订单有售后问题，请在平台开启售后并以售后页面的讨论结果为最终操作依据，请关注此页面的留言。平台客服工作时间：9:00-18:00（北京时间 周一 到周五）。周六安排客服值班，具体值班时间以实际为准；
-          </p>
-        </div>
-      </div>
-    </div>
-    
-    <!-- 订单状态筛选 -->
-    <div class="px-6 py-3 border-b border-slate-200 bg-slate-50">
-      <div class="flex flex-wrap gap-2">
-        <button 
-          @click="filterByStatus('all')" 
-          :class="[
-            'px-3 py-1 text-xs rounded',
-            activeStatusFilter === 'all' 
-              ? 'bg-primary text-white' 
-              : 'text-slate-700 hover:bg-slate-200'
-          ]"
-        >
-          全部状态
-        </button>
-        <button 
-          @click="filterByStatus('待付款')" 
-          :class="[
-            'px-3 py-1 text-xs rounded',
-            activeStatusFilter === '待付款' 
-              ? 'bg-yellow-500 text-white' 
-              : 'text-slate-700 hover:bg-slate-200'
-          ]"
-        >
-          待付款
-        </button>
-        <button 
-          @click="filterByStatus('待发货')" 
-          :class="[
-            'px-3 py-1 text-xs rounded',
-            activeStatusFilter === '待发货' 
-              ? 'bg-blue-500 text-white' 
-              : 'text-slate-700 hover:bg-slate-200'
-          ]"
-        >
-          待发货
-        </button>
-        <button 
-          @click="filterByStatus('已发货')" 
-          :class="[
-            'px-3 py-1 text-xs rounded',
-            activeStatusFilter === '已发货' 
-              ? 'bg-indigo-500 text-white' 
-              : 'text-slate-700 hover:bg-slate-200'
-          ]"
-        >
-          已发货
-        </button>
-        <button 
-          @click="filterByStatus('已完成')" 
-          :class="[
-            'px-3 py-1 text-xs rounded',
-            activeStatusFilter === '已完成' 
-              ? 'bg-green-500 text-white' 
-              : 'text-slate-700 hover:bg-slate-200'
-          ]"
-        >
-          已完成
-        </button>
-        <button 
-          @click="filterByStatus('已取消')" 
-          :class="[
-            'px-3 py-1 text-xs rounded',
-            activeStatusFilter === '已取消' 
-              ? 'bg-red-500 text-white' 
-              : 'text-slate-700 hover:bg-slate-200'
-          ]"
-        >
-          已取消
-        </button>
-      </div>
-    </div>
-    
-    <!-- 表格头部 -->
-    <div class="overflow-x-auto">
-      <table class="min-w-full divide-y divide-slate-200">
-        <thead class="bg-slate-50">
-          <tr>
-            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">商品信息</th>
-            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">单价</th>
-            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">数量</th>
-            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">金额</th>
-            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">订单类型</th>
-            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">订单状态</th>
-            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">操作</th>
-          </tr>
-        </thead>
-        <tbody class="bg-white divide-y divide-slate-200">
-          <tr v-for="item in paginatedOrders" :key="item.id" class="hover:bg-slate-50">
-            <td class="px-6 py-4">
-              <div class="flex items-center">
-                <div class="flex-shrink-0 h-16 w-16">
-                  <img class="h-16 w-16 object-contain" :src="item.productImage" :alt="item.productName" />
-                </div>
-                <div class="ml-4">
-                  <div class="text-sm font-medium text-slate-900">{{ item.productName }}</div>
-                  <div class="text-sm text-slate-500">SKU: {{ item.productSku }}</div>
-                </div>
-              </div>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-              <div class="text-sm text-slate-900">${{ item.unitPrice }}</div>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-              <div class="text-sm text-slate-900">{{ item.quantity }}</div>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-              <div class="text-sm text-slate-900 font-medium">${{ item.totalAmount }}</div>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-              <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full" :class="getOrderTypeClass(item.orderType)">
-                {{ item.orderType === ' wholesale' ? '批发' : '一件代发' }}
-              </span>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-              <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full" :class="getStatusClass(item.status)">
-                {{ item.status }}
-              </span>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500">
-              <button @click="viewDetail(item.id)" class="text-primary hover:text-primary-dark">查看</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
 
-    <!-- 空状态 -->
-    <div v-if="orders.length === 0" class="text-center py-12">
-      <div class="text-slate-500">暂无订单数据</div>
-    </div>
-
-    <!-- 分页 -->
-    <div v-if="orders.length > 0" class="flex items-center justify-between px-6 py-4 border-t border-slate-200 bg-slate-50">
-      <div class="text-sm text-slate-600">
-        共 {{ totalOrders }} 条 | 第 {{ currentPage }} 页
-      </div>
-      <div class="flex items-center gap-2">
-        <button
-          @click="previousPage"
-          :disabled="currentPage === 1"
-          class="px-3 py-1 text-sm border border-slate-300 rounded hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed transition"
-        >
-          上一页
-        </button>
-        <div class="flex items-center gap-1">
+      <!-- 订单状态 Tab -->
+      <div class="border-b border-slate-200 mb-6">
+        <div class="flex gap-1 flex-wrap">
           <button
-            v-for="page in paginationRange"
-            :key="page"
-            @click="goToPage(page)"
+            @click="filterByStatus('all')"
             :class="[
-              'px-3 py-1 text-sm rounded transition',
-              currentPage === page
-                ? 'bg-primary text-white border border-primary'
-                : 'border border-slate-300 hover:bg-slate-100'
+              'px-4 py-3 border-b-2 font-medium text-sm transition',
+              activeStatusFilter === 'all'
+                ? 'border-primary text-primary'
+                : 'border-transparent text-slate-600 hover:text-slate-900'
             ]"
           >
-            {{ page }}
+            所有订单
+          </button>
+          <button
+            v-for="status in statusOptions"
+            :key="status.value"
+            @click="filterByStatus(status.value)"
+            :class="[
+              'px-4 py-3 border-b-2 font-medium text-sm transition flex items-center gap-2',
+              activeStatusFilter === status.value
+                ? 'border-primary text-primary'
+                : 'border-transparent text-slate-600 hover:text-slate-900'
+            ]"
+          >
+            {{ status.label }} <span class="text-xs bg-slate-100 px-2 py-1 rounded">0</span>
           </button>
         </div>
-        <button
-          @click="nextPage"
-          :disabled="currentPage === totalPages"
-          class="px-3 py-1 text-sm border border-slate-300 rounded hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed transition"
-        >
-          下一页
-        </button>
       </div>
-    </div>
-  </div>
 
-  <!-- 详情弹窗 -->
-  <div v-if="showDetailModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-    <div class="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-      <div class="p-6">
-        <div class="flex justify-between items-center mb-4">
-          <h3 class="text-lg font-semibold">订单详情</h3>
-          <button @click="closeDetailModal" class="text-slate-500 hover:text-slate-700">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
+      <!-- 搜索和筛选区 -->
+      <form class="bg-white" @submit.prevent="searchOrders">
+        <div class="space-y-0.5 mb-8">
+          <!-- 过滤条件行 - 使用 2 列网格 -->
+          <div class="flex flex-wrap">
+            <!-- 平台类型 -->
+            <div class="w-1/2 float-left p-2.5 min-h-[44px]">
+              <div class="inline-flex items-center gap-2.5 w-full">
+                <span class="inline-block w-[120px] text-right leading-[34px] text-slate-700">平台类型：</span>
+                <div class="relative inline-block w-[calc(100%-135px)]">
+                  <input
+                    type="text"
+                    :value="platformTypeLabel"
+                    placeholder="全部"
+                    readonly
+                    class="w-full h-[34px] px-2.5 py-0.5 border border-[#e6e6e6] rounded text-sm bg-white cursor-pointer"
+                    @click="toggleDropdown('platformType')"
+                  />
+                  <i class="absolute right-2.5 top-1/2 -translate-y-1/2 w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-l-transparent border-r-transparent border-t-[#c2c2c2] cursor-pointer pointer-events-none"></i>
+                  <dl
+                    v-if="openDropdown === 'platformType'"
+                    class="absolute top-[42px] left-0 z-50 w-full max-h-[300px] overflow-y-auto bg-white border border-[#d2d2d2] rounded shadow-md p-1.25"
+                  >
+                    <dd
+                      v-for="opt in platformTypeOptions"
+                      :key="opt.value"
+                      class="px-2.5 py-0 leading-9 text-sm text-slate-700 cursor-pointer hover:bg-slate-100 whitespace-nowrap overflow-hidden text-ellipsis"
+                      :class="{ 'bg-[#cb2620] text-white': platformType === opt.value }"
+                      @click="selectOption('platformType', opt.value, opt.label)"
+                    >
+                      {{ opt.label }}
+                    </dd>
+                  </dl>
+                </div>
+              </div>
+            </div>
+
+            <!-- 异常类型 -->
+            <div class="w-1/2 float-left p-2.5 min-h-[44px]">
+              <div class="inline-flex items-center gap-2.5 w-full">
+                <span class="inline-block w-[120px] text-right leading-[34px] text-slate-700">异常类型：</span>
+                <div class="relative inline-block w-[calc(100%-135px)]">
+                  <input
+                    type="text"
+                    :value="exceptionTypeLabel"
+                    placeholder="全部"
+                    readonly
+                    class="w-full h-[34px] px-2.5 py-0.5 border border-[#e6e6e6] rounded text-sm bg-white cursor-pointer"
+                    @click="toggleDropdown('exceptionType')"
+                  />
+                  <i class="absolute right-2.5 top-1/2 -translate-y-1/2 w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-l-transparent border-r-transparent border-t-[#c2c2c2] cursor-pointer pointer-events-none"></i>
+                  <dl
+                    v-if="openDropdown === 'exceptionType'"
+                    class="absolute top-[42px] left-0 z-50 w-full max-h-[300px] overflow-y-auto bg-white border border-[#d2d2d2] rounded shadow-md p-1.25"
+                  >
+                    <dd
+                      v-for="opt in exceptionTypeOptions"
+                      :key="opt.value"
+                      class="px-2.5 py-0 leading-9 text-sm text-slate-700 cursor-pointer hover:bg-slate-100 whitespace-nowrap overflow-hidden text-ellipsis"
+                      :class="{ 'bg-[#cb2620] text-white': exceptionType === opt.value }"
+                      @click="selectOption('exceptionType', opt.value, opt.label)"
+                    >
+                      {{ opt.label }}
+                    </dd>
+                  </dl>
+                </div>
+              </div>
+            </div>
+
+            <!-- 平台账号 -->
+            <div class="w-1/2 float-left p-2.5 min-h-[44px]">
+              <div class="inline-flex items-center gap-2.5 w-full">
+                <span class="inline-block w-[120px] text-right leading-[34px] text-slate-700">平台账号：</span>
+                <input
+                  v-model="platformAccount"
+                  type="text"
+                  placeholder=""
+                  class="inline-block w-[calc(100%-135px)] h-[34px] px-2.5 py-0.5 border border-[#d5d5d5] rounded text-sm bg-white"
+                />
+              </div>
+            </div>
+
+            <!-- 跟踪号状态 -->
+            <div class="w-1/2 float-left p-2.5 min-h-[44px]">
+              <div class="inline-flex items-center gap-2.5 w-full">
+                <span class="inline-block w-[120px] text-right leading-[34px] text-slate-700">跟踪号状态：</span>
+                <div class="relative inline-block w-[calc(100%-135px)]">
+                  <input
+                    type="text"
+                    :value="trackingStatusLabel"
+                    placeholder="全部"
+                    readonly
+                    class="w-full h-[34px] px-2.5 py-0.5 border border-[#e6e6e6] rounded text-sm bg-white cursor-pointer"
+                    @click="toggleDropdown('trackingStatus')"
+                  />
+                  <i class="absolute right-2.5 top-1/2 -translate-y-1/2 w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-l-transparent border-r-transparent border-t-[#c2c2c2] cursor-pointer pointer-events-none"></i>
+                  <dl
+                    v-if="openDropdown === 'trackingStatus'"
+                    class="absolute top-[42px] left-0 z-50 w-full max-h-[300px] overflow-y-auto bg-white border border-[#d2d2d2] rounded shadow-md p-1.25"
+                  >
+                    <dd
+                      v-for="opt in trackingStatusOptions"
+                      :key="opt.value"
+                      class="px-2.5 py-0 leading-9 text-sm text-slate-700 cursor-pointer hover:bg-slate-100 whitespace-nowrap overflow-hidden text-ellipsis"
+                      :class="{ 'bg-[#cb2620] text-white': trackingStatus === opt.value }"
+                      @click="selectOption('trackingStatus', opt.value, opt.label)"
+                    >
+                      {{ opt.label }}
+                    </dd>
+                  </dl>
+                </div>
+              </div>
+            </div>
+
+            <!-- 搜索关键词选择和输入 -->
+            <div class="w-1/2 float-left p-2.5 min-h-[44px]">
+              <div class="inline-flex items-center gap-2.5 w-full">
+                <span class="inline-block w-[120px] text-right leading-[34px] text-slate-700">
+                  <div class="relative inline-block w-[120px]">
+                    <input
+                      type="text"
+                      :value="searchKeyTypeLabel"
+                      placeholder="请选择"
+                      readonly
+                      class="w-[120px] h-[34px] px-2.5 py-0.5 border border-[#e6e6e6] rounded text-sm bg-white cursor-pointer text-right"
+                      @click="toggleDropdown('searchKeyType')"
+                    />
+                    <i class="absolute right-2.5 top-1/2 -translate-y-1/2 w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-l-transparent border-r-transparent border-t-[#c2c2c2] cursor-pointer pointer-events-none"></i>
+                    <dl
+                      v-if="openDropdown === 'searchKeyType'"
+                      class="absolute top-[42px] right-0 z-50 w-[120px] max-h-[300px] overflow-y-auto bg-white border border-[#d2d2d2] rounded shadow-md p-1.25 text-right"
+                    >
+                      <dd
+                        v-for="opt in searchKeyTypeOptions"
+                        :key="opt.value"
+                        class="px-2.5 py-0 leading-9 text-sm text-slate-700 cursor-pointer hover:bg-slate-100 whitespace-nowrap overflow-hidden text-ellipsis text-right"
+                        :class="{ 'bg-[#cb2620] text-white': searchKeyType === opt.value }"
+                        @click="selectOption('searchKeyType', opt.value, opt.label)"
+                      >
+                        {{ opt.label }}
+                      </dd>
+                    </dl>
+                  </div>
+                </span>
+                <input
+                  v-model="searchKeyword"
+                  type="text"
+                  placeholder=""
+                  class="inline-block w-[calc(100%-135px)] h-[34px] px-2.5 py-0.5 border border-[#d5d5d5] rounded text-sm bg-white"
+                />
+              </div>
+            </div>
+
+            <!-- 跟踪号上传状态 -->
+            <div class="w-1/2 float-left p-2.5 min-h-[44px]">
+              <div class="inline-flex items-center gap-2.5 w-full">
+                <span class="inline-block w-[120px] text-right leading-[34px] text-slate-700">跟踪号上传状态：</span>
+                <div class="relative inline-block w-[calc(100%-135px)]">
+                  <input
+                    type="text"
+                    :value="uploadStatusLabel"
+                    placeholder="全部"
+                    readonly
+                    class="w-full h-[34px] px-2.5 py-0.5 border border-[#e6e6e6] rounded text-sm bg-white cursor-pointer"
+                    @click="toggleDropdown('uploadStatus')"
+                  />
+                  <i class="absolute right-2.5 top-1/2 -translate-y-1/2 w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-l-transparent border-r-transparent border-t-[#c2c2c2] cursor-pointer pointer-events-none"></i>
+                  <dl
+                    v-if="openDropdown === 'uploadStatus'"
+                    class="absolute top-[42px] left-0 z-50 w-full max-h-[300px] overflow-y-auto bg-white border border-[#d2d2d2] rounded shadow-md p-1.25"
+                  >
+                    <dd
+                      v-for="opt in uploadStatusOptions"
+                      :key="opt.value"
+                      class="px-2.5 py-0 leading-9 text-sm text-slate-700 cursor-pointer hover:bg-slate-100 whitespace-nowrap overflow-hidden text-ellipsis"
+                      :class="{ 'bg-[#cb2620] text-white': uploadStatus === opt.value }"
+                      @click="selectOption('uploadStatus', opt.value, opt.label)"
+                    >
+                      {{ opt.label }}
+                    </dd>
+                  </dl>
+                </div>
+              </div>
+            </div>
+
+            <!-- 是否拆单 -->
+            <div class="w-1/2 float-left p-2.5 min-h-[44px]">
+              <div class="inline-flex items-center gap-2.5 w-full">
+                <span class="inline-block w-[120px] text-right leading-[34px] text-slate-700">是否拆单：</span>
+                <div class="relative inline-block w-[calc(100%-135px)]">
+                  <input
+                    type="text"
+                    :value="isSplitLabel"
+                    placeholder="全部"
+                    readonly
+                    class="w-full h-[34px] px-2.5 py-0.5 border border-[#e6e6e6] rounded text-sm bg-white cursor-pointer"
+                    @click="toggleDropdown('isSplit')"
+                  />
+                  <i class="absolute right-2.5 top-1/2 -translate-y-1/2 w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-l-transparent border-r-transparent border-t-[#c2c2c2] cursor-pointer pointer-events-none"></i>
+                  <dl
+                    v-if="openDropdown === 'isSplit'"
+                    class="absolute top-[42px] left-0 z-50 w-full max-h-[300px] overflow-y-auto bg-white border border-[#d2d2d2] rounded shadow-md p-1.25"
+                  >
+                    <dd
+                      v-for="opt in isSplitOptions"
+                      :key="opt.value"
+                      class="px-2.5 py-0 leading-9 text-sm text-slate-700 cursor-pointer hover:bg-slate-100 whitespace-nowrap overflow-hidden text-ellipsis"
+                      :class="{ 'bg-[#cb2620] text-white': isSplit === opt.value }"
+                      @click="selectOption('isSplit', opt.value, opt.label)"
+                    >
+                      {{ opt.label }}
+                    </dd>
+                  </dl>
+                </div>
+              </div>
+            </div>
+
+            <!-- 下单时间 -->
+            <div class="w-1/2 float-left p-2.5 min-h-[44px]">
+              <div class="inline-flex items-center gap-2 w-full">
+                <span class="inline-block w-[120px] text-right leading-[34px] text-slate-700">下单时间：</span>
+                <input
+                  v-model="startTime"
+                  type="date"
+                  placeholder="开始日期"
+                  class="inline-block w-[calc(50%-74px)] h-[34px] px-2.5 py-0.5 border border-[#d5d5d5] rounded text-sm bg-white"
+                />
+                <span class="inline-block px-2 text-slate-400">-</span>
+                <input
+                  v-model="endTime"
+                  type="date"
+                  placeholder="结束日期"
+                  class="inline-block w-[calc(50%-74px)] h-[34px] px-2.5 py-0.5 border border-[#d5d5d5] rounded text-sm bg-white"
+                />
+              </div>
+            </div>
+
+            <!-- 搜索按钮 -->
+            <div class="w-full float-left p-2.5 min-h-[44px] text-center">
+              <button
+                type="submit"
+                class="inline-block w-[100px] h-[38px] leading-[38px] px-4.5 bg-[#cb2620] text-white rounded text-sm cursor-pointer font-medium hover:bg-red-700 transition"
+              >
+                搜索
+              </button>
+            </div>
+          </div>
         </div>
-        
-        <div v-if="selectedOrder" class="space-y-6">
-          <div class="flex flex-col md:flex-row md:items-start gap-6">
-            <div class="flex-shrink-0">
-              <img class="h-24 w-24 object-contain" :src="selectedOrder.productImage" :alt="selectedOrder.productName" />
-            </div>
-            <div class="flex-1">
-              <h4 class="text-lg font-medium text-slate-900">{{ selectedOrder.productName }}</h4>
-              <div class="mt-1 text-sm text-slate-500">SKU: {{ selectedOrder.productSku }}</div>
-              <div class="mt-2 flex flex-wrap gap-2">
-                <span class="px-2 py-1 text-xs font-medium rounded-full" :class="getOrderTypeClass(selectedOrder.orderType)">
-                  {{ selectedOrder.orderType === ' wholesale' ? '批发' : '一件代发' }}
+
+        <!-- 清除浮动 -->
+        <div class="clear-both"></div>
+
+        <!-- 操作栏 -->
+        <div class="flex gap-2 items-center justify-between mt-6">
+          <button type="button" class="px-6 py-2 bg-primary text-white rounded font-medium text-sm hover:bg-primary-dark transition">
+            手动载单
+          </button>
+          <em class="text-xs text-orange-600 border border-orange-300 px-3 py-2 rounded bg-orange-50">
+            [ 注意事项 ]
+          </em>
+        </div>
+      </form>
+    </div>
+
+    <!-- 数据表格和操作栏 -->
+    <div class="bg-white rounded-lg border border-slate-200 overflow-hidden">
+      <!-- 表格 -->
+      <div class="overflow-x-auto">
+        <table class="w-full border-collapse">
+          <thead class="bg-slate-50 border-b border-slate-200">
+            <tr>
+              <th class="px-4 py-3 text-left text-sm font-medium text-slate-700 w-[17%]">
+                <div class="flex items-center gap-2">
+                  <input type="checkbox" class="w-4 h-4 border border-slate-300 rounded" />
+                  <span>商品</span>
+                </div>
+              </th>
+              <th class="px-4 py-3 text-left text-sm font-medium text-slate-700 w-[9%]">金额</th>
+              <th class="px-4 py-3 text-left text-sm font-medium text-slate-700 w-[9%]">载单状态</th>
+              <th class="px-4 py-3 text-left text-sm font-medium text-slate-700 w-[9%]">跟踪号状态</th>
+              <th class="px-4 py-3 text-left text-sm font-medium text-slate-700 w-[12%]">跟踪号上传状态</th>
+              <th class="px-4 py-3 text-left text-sm font-medium text-slate-700 w-[11%]">异常类型</th>
+              <th class="px-4 py-3 text-left text-sm font-medium text-slate-700 w-[8%]">拆单</th>
+              <th class="px-4 py-3 text-left text-sm font-medium text-slate-700 w-[15%]">
+                <select class="px-2 py-1 border border-slate-300 rounded text-sm bg-white">
+                  <option value="">标记</option>
+                  <option value="0">无标记</option>
+                  <option value="1">不自动上传</option>
+                  <option value="2">超时不自动上传</option>
+                </select>
+              </th>
+              <th class="px-4 py-3 text-left text-sm font-medium text-slate-700 w-[10%]">操作</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200">
+            <tr v-for="item in paginatedOrders" :key="item.id" class="hover:bg-slate-50 transition">
+              <td class="px-4 py-4">
+                <div class="flex gap-3 items-center">
+                  <input type="checkbox" class="w-4 h-4 border border-slate-300 rounded" />
+                  <div>
+                    <div class="text-sm font-medium text-slate-900">{{ item.productName }}</div>
+                    <div class="text-xs text-slate-500 mt-1">{{ item.platformOrderNo }}</div>
+                  </div>
+                </div>
+              </td>
+              <td class="px-4 py-4 text-sm text-slate-900">${{ item.amount }}</td>
+              <td class="px-4 py-4">
+                <span class="px-2 py-1 text-xs font-medium rounded" :class="getStatusClass(item.loadStatus)">
+                  {{ item.loadStatus }}
                 </span>
-                <span class="px-2 py-1 text-xs font-medium rounded-full" :class="getStatusClass(selectedOrder.status)">
-                  {{ selectedOrder.status }}
+              </td>
+              <td class="px-4 py-4 text-sm text-slate-900">{{ item.trackingStatus }}</td>
+              <td class="px-4 py-4">
+                <span class="px-2 py-1 text-xs font-medium rounded" :class="getUploadStatusClass(item.uploadStatus)">
+                  {{ item.uploadStatus }}
                 </span>
-              </div>
-            </div>
-            <div class="text-right">
-              <div class="text-2xl font-bold text-slate-900">${{ selectedOrder.totalAmount }}</div>
-              <div class="text-sm text-slate-500 mt-1">{{ selectedOrder.quantity }} 件 × ${{ selectedOrder.unitPrice }}</div>
-            </div>
+              </td>
+              <td class="px-4 py-4 text-sm text-slate-900">{{ item.exceptionType || '-' }}</td>
+              <td class="px-4 py-4 text-sm text-slate-900">{{ item.isSplit }}</td>
+              <td class="px-4 py-4 text-sm text-slate-900">{{ item.tag || '-' }}</td>
+              <td class="px-4 py-4">
+                <button class="text-primary hover:text-primary-dark text-sm font-medium">
+                  编辑
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 空状态 -->
+      <div v-if="filteredOrders.length === 0" class="text-center py-16">
+        <svg class="w-20 h-20 mx-auto text-slate-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+        </svg>
+        <p class="text-slate-500 text-sm">没有找到数据，您可以更换搜索条件</p>
+      </div>
+
+      <!-- 分页 -->
+      <div v-if="filteredOrders.length > 0" class="border-t border-slate-200 bg-white px-4 py-3 flex items-center justify-between">
+        <div class="text-sm text-slate-600">
+          共 {{ totalOrders }} 条 | 第 {{ currentPage }} 页
+        </div>
+        <div class="flex items-center gap-2">
+          <button
+            @click="previousPage"
+            :disabled="currentPage === 1"
+            class="px-3 py-1 text-sm border border-slate-300 rounded hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition"
+          >
+            上一页
+          </button>
+          <div class="flex items-center gap-1">
+            <button
+              v-for="page in paginationRange"
+              :key="page"
+              @click="goToPage(page)"
+              :class="[
+                'px-3 py-1 text-sm rounded transition',
+                currentPage === page
+                  ? 'bg-primary text-white border border-primary'
+                  : 'border border-slate-300 hover:bg-slate-100'
+              ]"
+            >
+              {{ page }}
+            </button>
           </div>
-          
-          <div class="border-t border-slate-200 pt-4">
-            <h5 class="text-md font-medium text-slate-900 mb-3">订单信息</h5>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label class="text-sm font-medium text-slate-700">订单号</label>
-                <div class="mt-1 text-sm text-slate-900">{{ selectedOrder.orderNumber }}</div>
-              </div>
-              <div>
-                <label class="text-sm font-medium text-slate-700">下单时间</label>
-                <div class="mt-1 text-sm text-slate-900">{{ selectedOrder.orderDate }}</div>
-              </div>
-              <div class="md:col-span-2">
-                <label class="text-sm font-medium text-slate-700">收货地址</label>
-                <div class="mt-1 text-sm text-slate-900">{{ selectedOrder.deliveryAddress }}</div>
-              </div>
-              <div class="md:col-span-2">
-                <label class="text-sm font-medium text-slate-700">备注</label>
-                <div class="mt-1 text-sm text-slate-900">{{ selectedOrder.remarks || '无' }}</div>
-              </div>
-            </div>
-          </div>
+          <button
+            @click="nextPage"
+            :disabled="currentPage === totalPages"
+            class="px-3 py-1 text-sm border border-slate-300 rounded hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition"
+          >
+            下一页
+          </button>
         </div>
       </div>
     </div>
@@ -324,177 +419,374 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 
-interface OrderItem {
+interface PlatformOrder {
   id: number
-  productImage: string
+  platformOrderNo: string
   productName: string
-  productSku: string
-  unitPrice: number
-  quantity: number
-  totalAmount: number
-  status: string
-  orderDate: string
-  orderNumber: string
-  deliveryAddress: string
-  orderType: ' wholesale' | 'dropshipping' // wholesale: 批发, dropshipping: 一件代发
-  remarks?: string
+  amount: number
+  loadStatus: string
+  trackingStatus: string
+  uploadStatus: string
+  exceptionType: string
+  isSplit: string
+  tag?: string
 }
 
 const currentPage = ref(1)
-const pageSize = ref(5)
-const showDetailModal = ref(false)
-const selectedOrder = ref<OrderItem | null>(null)
-const activeFilter = ref<'all' | ' wholesale' | 'dropshipping'>('all')
-const activeStatusFilter = ref<'all' | '待付款' | '待发货' | '已发货' | '已完成' | '已取消'>('all')
+const pageSize = ref(10)
+const activeStatusFilter = ref<string>('all')
 const searchKeyword = ref('')
+const searchKeyType = ref('1')
+const startTime = ref('2025-09-18')
+const endTime = ref('')
+const platformType = ref('')
+const exceptionType = ref('')
+const platformAccount = ref('')
+const trackingStatus = ref('')
+const uploadStatus = ref('')
+const isSplit = ref('')
+const openDropdown = ref<string | null>(null)
 
-// 演示数据
-const orders: OrderItem[] = [
+const platformTypeOptions = [
+  { value: '', label: '全部' },
+  { value: '1', label: 'WISH' },
+  { value: '2', label: 'eBay' },
+  { value: '3', label: '美国亚马逊' },
+  { value: '4', label: '加拿大亚马逊' },
+  { value: '5', label: '墨西哥亚马逊' },
+  { value: '6', label: '英国亚马逊' },
+  { value: '7', label: '法国���马逊' },
+  { value: '8', label: '德国亚马逊' },
+  { value: '9', label: '意大利亚马逊' },
+  { value: '10', label: '西班牙亚马逊' },
+  { value: '11', label: '赛盒' },
+  { value: '12', label: 'Shopify' },
+  { value: '13', label: 'EKM' },
+  { value: '14', label: 'Walmart' },
+]
+
+const exceptionTypeOptions = [
+  { value: '', label: '全部' },
+  { value: '1', label: '无SKU映射' },
+  { value: '2', label: '库存不足' },
+  { value: '3', label: '无商品权限' },
+  { value: '4', label: '配送信息错误，请点击"编辑"进行修改' },
+  { value: '5', label: '发货区域不支持，请将SKU映射的区域与收货地址的国家改为一致' },
+  { value: '6', label: '自定义单号与历史订单重复，请检查表格数据并重新上传' },
+  { value: '7', label: '报价失败' },
+  { value: '8', label: '无物流映射' },
+  { value: '9', label: '此客户仅支持品牌商品下单' },
+  { value: '10', label: '此客户仅支持非品牌商品下单' },
+]
+
+const trackingStatusOptions = [
+  { value: '', label: '全部' },
+  { value: '0', label: '未产生' },
+  { value: '10', label: '已产生' },
+  { value: '20', label: '已变更' },
+]
+
+const searchKeyTypeOptions = [
+  { value: '1', label: '平台订单号' },
+  { value: '2', label: 'SaleYee-SKU' },
+  { value: '3', label: '平台SKU' },
+]
+
+const uploadStatusOptions = [
+  { value: '', label: '全部' },
+  { value: '0', label: '待上传' },
+  { value: '10', label: '待更新' },
+  { value: '15', label: '上传中' },
+  { value: '20', label: '已上传' },
+  { value: '30', label: '上传失败' },
+]
+
+const isSplitOptions = [
+  { value: '', label: '全部' },
+  { value: '10', label: '是' },
+  { value: '20', label: '否' },
+]
+
+const statusOptions = [
+  { value: 'pending', label: '待生成订单' },
+  { value: 'unshipped', label: '未发货' },
+  { value: 'partial', label: '部分发货' },
+  { value: 'shipped', label: '已发货' },
+  { value: 'draft', label: '暂存订单' },
+  { value: 'timeout', label: '超过24小时未上传跟踪号' },
+  { value: 'waiting', label: '待上传跟��号' },
+]
+
+const platformTypeLabel = computed(() => {
+  const opt = platformTypeOptions.find(o => o.value === platformType.value)
+  return opt?.label || '全部'
+})
+
+const exceptionTypeLabel = computed(() => {
+  const opt = exceptionTypeOptions.find(o => o.value === exceptionType.value)
+  return opt?.label || '全部'
+})
+
+const trackingStatusLabel = computed(() => {
+  const opt = trackingStatusOptions.find(o => o.value === trackingStatus.value)
+  return opt?.label || '全部'
+})
+
+const searchKeyTypeLabel = computed(() => {
+  const opt = searchKeyTypeOptions.find(o => o.value === searchKeyType.value)
+  return opt?.label || '平台订单号'
+})
+
+const uploadStatusLabel = computed(() => {
+  const opt = uploadStatusOptions.find(o => o.value === uploadStatus.value)
+  return opt?.label || '全部'
+})
+
+const isSplitLabel = computed(() => {
+  const opt = isSplitOptions.find(o => o.value === isSplit.value)
+  return opt?.label || '全部'
+})
+
+const platformOrders: PlatformOrder[] = [
   {
     id: 1,
-    productImage: 'https://img-accelerate.saleyee.cn/Resources/GoodsImages/2023/202312/b4a7be3d-a601-4332-a34d-47833226c810.Jpeg',
-    productName: '3抽抽屉柜 床头柜储物柜 白色（同款07479869, 69269387）',
-    productSku: '75682614',
-    unitPrice: 46.80,
-    quantity: 2,
-    totalAmount: 93.60,
-    status: '待发货',
-    orderDate: '2025-10-15 14:30:25',
-    orderNumber: 'ORD20251015001',
-    deliveryAddress: '北京市朝阳区xxx街道xxx号',
-    orderType: ' wholesale',
-    remarks: '请尽快发货'
+    platformOrderNo: 'AMZ-20251018-001',
+    productName: '蓝牙耳机无线充电',
+    amount: 32.50,
+    loadStatus: '已生成',
+    trackingStatus: '已产生',
+    uploadStatus: '已上传',
+    exceptionType: '',
+    isSplit: '否',
+    tag: '无标记',
   },
   {
     id: 2,
-    productImage: 'https://img-accelerate.saleyee.cn/Resources/GoodsImages/2023/202308/4695cd17-10c7-473c-960a-fbb9d18c4a90.Jpeg',
-    productName: '12ft 巨型可怕幽灵 4颗LED灯 火焰和闪烁的红眼睛 充气万圣装饰',
-    productSku: '50904039',
-    unitPrice: 34.04,
-    quantity: 1,
-    totalAmount: 34.04,
-    status: '已发货',
-    orderDate: '2025-10-14 09:15:42',
-    orderNumber: 'ORD20251014002',
-    deliveryAddress: '上海市浦东新区xxx路xxx号',
-    orderType: 'dropshipping',
-    remarks: '物流单号：FEDEX123456789'
+    platformOrderNo: 'eBay-20251017-052',
+    productName: '户外LED手电筒',
+    amount: 18.99,
+    loadStatus: '已生成',
+    trackingStatus: '已产生',
+    uploadStatus: '待上传',
+    exceptionType: '',
+    isSplit: '是',
   },
   {
     id: 3,
-    productImage: 'https://img-accelerate.saleyee.cn/Resources/GoodsImages/2023/202309/3c1b039b-de57-4d8f-805a-4d15658b90c5.Jpeg',
-    productName: '6ft LED南瓜灯 万圣节充气装饰',
-    productSku: '50904040',
-    unitPrice: 22.50,
-    quantity: 3,
-    totalAmount: 67.50,
-    status: '已完成',
-    orderDate: '2025-10-10 16:45:18',
-    orderNumber: 'ORD20251010003',
-    deliveryAddress: '广州市天河区xxx大道xxx号',
-    orderType: ' wholesale',
-    remarks: '客户已签收'
+    platformOrderNo: 'WISH-20251016-234',
+    productName: '防水运动手表',
+    amount: 45.00,
+    loadStatus: '生成失败',
+    trackingStatus: '未产生',
+    uploadStatus: '待上传',
+    exceptionType: '无SKU映射',
+    isSplit: '否',
   },
   {
     id: 4,
-    productImage: 'https://img-accelerate.saleyee.cn/Resources/GoodsImages/2023/202312/b4a7be3d-a601-4332-a34d-47833226c810.Jpeg',
-    productName: '现代简约3抽屉梳妆台 白色',
-    productSku: '75682615',
-    unitPrice: 52.00,
-    quantity: 1,
-    totalAmount: 52.00,
-    status: '待付款',
-    orderDate: '2025-10-08 11:20:33',
-    orderNumber: 'ORD20251008004',
-    deliveryAddress: '深圳市南山区xxx科技园xxx栋',
-    orderType: 'dropshipping',
-    remarks: ''
+    platformOrderNo: 'Shopify-20251015-089',
+    productName: '智能家居控制器',
+    amount: 62.75,
+    loadStatus: '已生成',
+    trackingStatus: '已变更',
+    uploadStatus: '已上传',
+    exceptionType: '',
+    isSplit: '否',
+    tag: '不自动上传',
   },
   {
     id: 5,
-    productImage: 'https://img-accelerate.saleyee.cn/Resources/GoodsImages/2023/202308/03b9a883-ada3-41af-88a5-0beba02f2eeb.Jpeg',
-    productName: '万圣节幽灵装饰灯 黑色款',
-    productSku: '50904041',
-    unitPrice: 28.90,
-    quantity: 2,
-    totalAmount: 57.80,
-    status: '已取消',
-    orderDate: '2025-10-05 13:45:12',
-    orderNumber: 'ORD20251005005',
-    deliveryAddress: '杭州市西湖区xxx路xxx号',
-    orderType: ' wholesale',
-    remarks: '客户主动取消'
+    platformOrderNo: 'AMZ-20251014-156',
+    productName: '充电宝20000mAh',
+    amount: 24.50,
+    loadStatus: '已生���',
+    trackingStatus: '已产生',
+    uploadStatus: '上传失败',
+    exceptionType: '',
+    isSplit: '否',
   },
   {
     id: 6,
-    productImage: 'https://img-accelerate.saleyee.cn/Resources/GoodsImages/2023/202312/86bb50ad-7a28-4ade-982f-600530c9bb3f.Jpeg',
-    productName: '北欧风格床头柜 实木材质',
-    productSku: '75682616',
-    unitPrice: 65.50,
-    quantity: 1,
-    totalAmount: 65.50,
-    status: '待发货',
-    orderDate: '2025-10-01 10:30:45',
-    orderNumber: 'ORD20251001006',
-    deliveryAddress: '成都市锦江区xxx街道xxx号',
-    orderType: 'dropshipping',
-    remarks: '样品确认通过'
+    platformOrderNo: 'eBay-20251013-678',
+    productName: '手机壳保护套',
+    amount: 8.99,
+    loadStatus: '已生成',
+    trackingStatus: '未产生',
+    uploadStatus: '待上传',
+    exceptionType: '',
+    isSplit: '否',
   },
   {
     id: 7,
-    productImage: 'https://img-accelerate.saleyee.cn/Resources/GoodsImages/2023/202309/2a764166-da43-45a1-9fba-ceea6243b6b7.Jpeg',
-    productName: '户外庭院装饰灯 太阳能款',
-    productSku: '50904042',
-    unitPrice: 18.75,
-    quantity: 5,
-    totalAmount: 93.75,
-    status: '已发货',
-    orderDate: '2025-09-28 15:22:17',
-    orderNumber: 'ORD20250928007',
-    deliveryAddress: '武汉市江汉区xxx大道xxx号',
-    orderType: ' wholesale',
-    remarks: '批量采购订单'
+    platformOrderNo: 'WISH-20251012-445',
+    productName: '自拍杆三脚架',
+    amount: 15.80,
+    loadStatus: '已生成',
+    trackingStatus: '已产生',
+    uploadStatus: '已上传',
+    exceptionType: '',
+    isSplit: '是',
   },
   {
     id: 8,
-    productImage: 'https://img-accelerate.saleyee.cn/Resources/GoodsImages/2023/202312/2753d850-5827-4fcb-a4ac-bea08144b53e.Jpeg',
-    productName: '儿童房储物柜 粉色系列',
-    productSku: '75682617',
-    unitPrice: 39.90,
-    quantity: 1,
-    totalAmount: 39.90,
-    status: '已完成',
-    orderDate: '2025-09-25 09:45:30',
-    orderNumber: 'ORD20250925008',
-    deliveryAddress: '南京市鼓楼区xxx路xxx号',
-    orderType: 'dropshipping',
-    remarks: '节日促销订单'
-  }
+    platformOrderNo: 'Shopify-20251011-723',
+    productName: '蓝牙音箱便携式',
+    amount: 38.00,
+    loadStatus: '已生成',
+    trackingStatus: '已产生',
+    uploadStatus: '待更新',
+    exceptionType: '',
+    isSplit: '否',
+  },
+  {
+    id: 9,
+    platformOrderNo: 'AMZ-20251010-234',
+    productName: '显示器支架调节',
+    amount: 29.99,
+    loadStatus: '已生成',
+    trackingStatus: '未产生',
+    uploadStatus: '待上传',
+    exceptionType: '库存不足',
+    isSplit: '否',
+  },
+  {
+    id: 10,
+    platformOrderNo: 'eBay-20251009-891',
+    productName: '键盘鼠标套装',
+    amount: 35.50,
+    loadStatus: '已生成',
+    trackingStatus: '已产生',
+    uploadStatus: '已上传',
+    exceptionType: '',
+    isSplit: '否',
+  },
+  {
+    id: 11,
+    platformOrderNo: 'WISH-20251008-567',
+    productName: '手机壳防摔',
+    amount: 12.00,
+    loadStatus: '生成失败',
+    trackingStatus: '未产生',
+    uploadStatus: '待上传',
+    exceptionType: '无商品权限',
+    isSplit: '否',
+  },
+  {
+    id: 12,
+    platformOrderNo: 'Shopify-20251007-334',
+    productName: '保温杯不锈钢',
+    amount: 28.50,
+    loadStatus: '已生成',
+    trackingStatus: '已产生',
+    uploadStatus: '已上传',
+    exceptionType: '',
+    isSplit: '否',
+  },
+  {
+    id: 13,
+    platformOrderNo: 'AMZ-20251006-445',
+    productName: '运动鞋休闲',
+    amount: 75.00,
+    loadStatus: '已生成',
+    trackingStatus: '已产生',
+    uploadStatus: '上传中',
+    exceptionType: '',
+    isSplit: '是',
+  },
+  {
+    id: 14,
+    platformOrderNo: 'eBay-20251005-112',
+    productName: '背包双肩包',
+    amount: 42.00,
+    loadStatus: '已生成',
+    trackingStatus: '已产生',
+    uploadStatus: '已上传',
+    exceptionType: '',
+    isSplit: '否',
+  },
+  {
+    id: 15,
+    platformOrderNo: 'WISH-20251004-789',
+    productName: '帽子棒球帽',
+    amount: 16.50,
+    loadStatus: '已生成',
+    trackingStatus: '未产生',
+    uploadStatus: '待上传',
+    exceptionType: '',
+    isSplit: '否',
+  },
+  {
+    id: 16,
+    platformOrderNo: 'Shopify-20251003-556',
+    productName: '手套冬季保暖',
+    amount: 18.99,
+    loadStatus: '已生成',
+    trackingStatus: '已产生',
+    uploadStatus: '已上传',
+    exceptionType: '',
+    isSplit: '否',
+  },
+  {
+    id: 17,
+    platformOrderNo: 'AMZ-20251002-667',
+    productName: '围巾羊毛',
+    amount: 32.00,
+    loadStatus: '已生成',
+    trackingStatus: '已产生',
+    uploadStatus: '已上传',
+    exceptionType: '',
+    isSplit: '否',
+  },
+  {
+    id: 18,
+    platformOrderNo: 'eBay-20251001-778',
+    productName: '袜子棉质',
+    amount: 9.99,
+    loadStatus: '已生成',
+    trackingStatus: '已产生',
+    uploadStatus: '待上传',
+    exceptionType: '',
+    isSplit: '否',
+  },
+  {
+    id: 19,
+    platformOrderNo: 'WISH-20250930-889',
+    productName: '皮带腰带',
+    amount: 22.50,
+    loadStatus: '已生成',
+    trackingStatus: '已产生',
+    uploadStatus: '已上传',
+    exceptionType: '',
+    isSplit: '否',
+  },
+  {
+    id: 20,
+    platformOrderNo: 'Shopify-20250929-445',
+    productName: '腰包斜挎包',
+    amount: 26.00,
+    loadStatus: '已生成',
+    trackingStatus: '已产���',
+    uploadStatus: '已上传',
+    exceptionType: '',
+    isSplit: '是',
+  },
 ]
 
 const filteredOrders = computed(() => {
-  let result = orders
-  
-  // 按订单类型过滤
-  if (activeFilter.value !== 'all') {
-    result = result.filter(order => order.orderType === activeFilter.value)
-  }
-  
-  // 按订单状态过滤
+  let result = platformOrders
+
   if (activeStatusFilter.value !== 'all') {
-    result = result.filter(order => order.status === activeStatusFilter.value)
+    // TODO: 根据状态过滤
   }
-  
-  // 按关键词搜索
+
   if (searchKeyword.value) {
     const keyword = searchKeyword.value.toLowerCase()
-    result = result.filter(order => 
-      order.productName.toLowerCase().includes(keyword) || 
-      order.productSku.toLowerCase().includes(keyword) || 
-      order.orderNumber.toLowerCase().includes(keyword)
+    result = result.filter(order =>
+      order.productName.toLowerCase().includes(keyword) ||
+      order.platformOrderNo.toLowerCase().includes(keyword)
     )
   }
-  
+
   return result
 })
 
@@ -511,7 +803,7 @@ const paginationRange = computed(() => {
   const delta = 2
   const left = Math.max(1, currentPage.value - delta)
   const right = Math.min(totalPages.value, currentPage.value + delta)
-  const range = []
+  const range: (number | string)[] = []
 
   if (left > 1) {
     range.push(1)
@@ -552,61 +844,66 @@ const nextPage = () => {
   }
 }
 
-const viewDetail = (id: number) => {
-  selectedOrder.value = orders.find(item => item.id === id) || null
-  showDetailModal.value = true
-}
-
-const closeDetailModal = () => {
-  showDetailModal.value = false
-  selectedOrder.value = null
-}
-
-const filterOrders = (filter: 'all' | ' wholesale' | 'dropshipping') => {
-  activeFilter.value = filter
-  currentPage.value = 1 // 重置到第一页
-}
-
-const filterByStatus = (status: 'all' | '待付款' | '待发货' | '已发货' | '已完成' | '已取消') => {
+const filterByStatus = (status: string) => {
   activeStatusFilter.value = status
-  currentPage.value = 1 // 重置到第一页
+  currentPage.value = 1
 }
 
 const searchOrders = () => {
-  currentPage.value = 1 // 重置到第一页
-  // 搜索功能将在过滤逻辑中实现
+  currentPage.value = 1
 }
 
-const resetFilters = () => {
-  activeFilter.value = 'all'
-  activeStatusFilter.value = 'all'
-  searchKeyword.value = ''
-  currentPage.value = 1
+const toggleDropdown = (dropdownName: string) => {
+  openDropdown.value = openDropdown.value === dropdownName ? null : dropdownName
+}
+
+const selectOption = (fieldName: string, value: string, label: string) => {
+  switch (fieldName) {
+    case 'platformType':
+      platformType.value = value
+      break
+    case 'exceptionType':
+      exceptionType.value = value
+      break
+    case 'trackingStatus':
+      trackingStatus.value = value
+      break
+    case 'searchKeyType':
+      searchKeyType.value = value
+      break
+    case 'uploadStatus':
+      uploadStatus.value = value
+      break
+    case 'isSplit':
+      isSplit.value = value
+      break
+  }
+  openDropdown.value = null
 }
 
 const getStatusClass = (status: string) => {
   switch (status) {
-    case '待付款':
-      return 'bg-yellow-100 text-yellow-800'
-    case '待发货':
-      return 'bg-blue-100 text-blue-800'
-    case '已发货':
-      return 'bg-indigo-100 text-indigo-800'
-    case '已完成':
+    case '已生成':
       return 'bg-green-100 text-green-800'
-    case '已取消':
+    case '生成失败':
       return 'bg-red-100 text-red-800'
     default:
       return 'bg-gray-100 text-gray-800'
   }
 }
 
-const getOrderTypeClass = (orderType: ' wholesale' | 'dropshipping') => {
-  switch (orderType) {
-    case ' wholesale':
-      return 'bg-purple-100 text-purple-800'
-    case 'dropshipping':
-      return 'bg-cyan-100 text-cyan-800'
+const getUploadStatusClass = (status: string) => {
+  switch (status) {
+    case '已上传':
+      return 'bg-green-100 text-green-800'
+    case '待上传':
+      return 'bg-yellow-100 text-yellow-800'
+    case '上传失败':
+      return 'bg-red-100 text-red-800'
+    case '上传中':
+      return 'bg-blue-100 text-blue-800'
+    case '待更新':
+      return 'bg-orange-100 text-orange-800'
     default:
       return 'bg-gray-100 text-gray-800'
   }
@@ -614,5 +911,5 @@ const getOrderTypeClass = (orderType: ' wholesale' | 'dropshipping') => {
 </script>
 
 <style scoped>
-/* 可以根据需要添加自定义样式 */
+/* 自定义样式 */
 </style>
