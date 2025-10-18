@@ -508,11 +508,23 @@
             <!-- 平台载单面板 -->
             <PlatformOrderPage v-else-if="activeMenu === 'platform-orders'" />
 
+            <!-- 平台授权面板 -->
+            <PlatformAuthPage v-else-if="activeMenu === 'platform-auth'" />
+
+            <!-- 载单设置面板 -->
+            <OrderSettingsPage v-else-if="activeMenu === 'order-settings'" />
+
             <!-- 批量下单面板 -->
             <BatchOrderPage v-else-if="activeMenu === 'batch-orders'" />
 
+            <!-- 下载中心面板 -->
+            <DownloadCenterPage v-else-if="activeMenu === 'download-center'" />
+
             <!-- 异常订单面板 -->
             <ExceptionOrderPage v-else-if="activeMenu === 'exception-orders'" />
+
+            <!-- 售后管理面板 -->
+            <AfterSalesManagementPage v-else-if="activeMenu === 'after-sales-management'" />
 
             <!-- 其他面板 -->
             <div v-else class="bg-white rounded-lg border border-slate-200 p-6">
@@ -563,6 +575,10 @@ import MyOrderPage from '@/pages/MyOrderPage.vue'
 import PlatformOrderPage from '@/pages/PlatformOrderPage.vue'
 import BatchOrderPage from '@/pages/BatchOrderPage.vue'
 import ExceptionOrderPage from '@/pages/ExceptionOrderPage.vue'
+import AfterSalesManagementPage from '@/pages/AfterSalesManagementPage.vue'
+import DownloadCenterPage from '@/pages/DownloadCenterPage.vue'
+import PlatformAuthPage from '@/pages/PlatformAuthPage.vue'
+import OrderSettingsPage from '@/pages/OrderSettingsPage.vue'
 
 const activeMenu = ref('info')
 const expandedGroups = ref<Record<string, boolean>>({
@@ -597,7 +613,7 @@ const menuLabels: Record<string, string> = {
   sales: '返现活动',
   'inquiry-order': '咨价单',
   orders: '我的订单',
-  'platform-orders': '平台载单',
+  'platform-orders': '平��载单',
   'batch-orders': '批量下单',
   'exception-orders': '异常订单',
   'after-sales-management': '售后管理',
