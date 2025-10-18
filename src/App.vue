@@ -132,185 +132,279 @@ onUnmounted(() => window.removeEventListener('resize', updateHeroHeight))
 
       <PlatformTabs />
 
+      <!-- 平台精选 -->
+      <section id="platform" class="bg-white py-8">
+        <div class="mx-auto w-full max-w-[1500px] md:w-[80%] md:min-w-[1200px] px-4 md:px-0">
+          <h2 class="text-xl md:text-2xl font-semibold text-slate-900 mb-6 text-center">平台精选</h2>
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+            <a href="#" class="group block bg-white border border-slate-200 rounded hover:shadow-lg transition p-4">
+              <div class="aspect-[4/3] bg-slate-50 overflow-hidden rounded mb-2">
+                <img src="https://via.placeholder.com/300x225?text=Amazon" alt="Amazon" @error="onImgError" class="h-full w-full object-contain" />
+              </div>
+              <p class="text-sm text-slate-700 text-center">Amazon 精选商品</p>
+            </a>
+            <a href="#" class="group block bg-white border border-slate-200 rounded hover:shadow-lg transition p-4">
+              <div class="aspect-[4/3] bg-slate-50 overflow-hidden rounded mb-2">
+                <img src="https://via.placeholder.com/300x225?text=eBay" alt="eBay" @error="onImgError" class="h-full w-full object-contain" />
+              </div>
+              <p class="text-sm text-slate-700 text-center">eBay 热销产品</p>
+            </a>
+            <a href="#" class="group block bg-white border border-slate-200 rounded hover:shadow-lg transition p-4">
+              <div class="aspect-[4/3] bg-slate-50 overflow-hidden rounded mb-2">
+                <img src="https://via.placeholder.com/300x225?text=TEMU" alt="TEMU" @error="onImgError" class="h-full w-full object-contain" />
+              </div>
+              <p class="text-sm text-slate-700 text-center">TEMU 爆款推荐</p>
+            </a>
+            <a href="#" class="group block bg-white border border-slate-200 rounded hover:shadow-lg transition p-4">
+              <div class="aspect-[4/3] bg-slate-50 overflow-hidden rounded mb-2">
+                <img src="https://via.placeholder.com/300x225?text=SHEIN" alt="SHEIN" @error="onImgError" class="h-full w-full object-contain" />
+              </div>
+              <p class="text-sm text-slate-700 text-center">SHEIN 时尚好物</p>
+            </a>
+            <a href="#" class="group block bg-white border border-slate-200 rounded hover:shadow-lg transition p-4">
+              <div class="aspect-[4/3] bg-slate-50 overflow-hidden rounded mb-2">
+                <img src="https://via.placeholder.com/300x225?text=TikTok" alt="TikTok" @error="onImgError" class="h-full w-full object-contain" />
+              </div>
+              <p class="text-sm text-slate-700 text-center">TikTok 热门商品</p>
+            </a>
+          </div>
+        </div>
+      </section>
+
       <!-- 节日装饰 -->
       <section id="festival" class="bg-slate-50 py-8">
         <div class="mx-auto w-full max-w-[1500px] md:w-[80%] md:min-w-[1200px] px-4 md:px-0">
-          <h2 class="text-xl md:text-2xl font-semibold text-slate-900 mb-4 text-center">{{ t('sections.festival') }}</h2>
-          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-            <a
-              href="/item/50904039"
-              class="group block rounded-md overflow-hidden bg-white border hover:shadow-lg transition"
-            >
-              <div class="aspect-square bg-slate-100 overflow-hidden">
-                <img
-                  src="https://resource.saleyee.com/UploadFiles/Images/2025/202509/00cf4684-6f64-483a-9bd3-ca982f03b8ef.png"
-                  alt="节日装饰1"
-                  @error="onImgError" class="h-full w-full object-cover group-hover:scale-105 transition"
-                />
-              </div>
-              <div class="p-3 text-sm text-slate-700">圣诞早鸟专场装饰</div>
-            </a>
-            <a
-              href="/item/50904040"
-              class="group block rounded-md overflow-hidden bg-white border hover:shadow-lg transition"
-            >
-              <div class="aspect-square bg-slate-100 overflow-hidden">
-                <img
-                  src="https://resource.saleyee.com/UploadFiles/Images/2025/202510/06189dc6-4039-4415-9581-e5d1bee4983b.jpg"
-                  alt="节日装饰2"
-                  @error="onImgError" class="h-full w-full object-cover group-hover:scale-105 transition"
-                />
-              </div>
-              <div class="p-3 text-sm text-slate-700">节日氛围灯饰</div>
-            </a>
-            <a
-              href="/item/50904039"
-              class="group block rounded-md overflow-hidden bg-white border hover:shadow-lg transition"
-            >
-              <div class="aspect-square bg-slate-100 overflow-hidden">
-                <img
-                  src="https://resource.saleyee.com/UploadFiles/Images/2024/202403/3987c701-aaaf-468e-8a91-deaf40d4bcb5.jpg"
-                  alt="节日装饰3"
-                  @error="onImgError" class="h-full w-full object-cover group-hover:scale-105 transition"
-                />
-              </div>
-              <div class="p-3 text-sm text-slate-700">派对气球/彩带</div>
-            </a>
-            <a
-              href="/item/50904040"
-              class="group block rounded-md overflow-hidden bg-white border hover:shadow-lg transition"
-            >
-              <div class="aspect-square bg-slate-100 overflow-hidden">
-                <img
-                  src="https://resource.saleyee.com/UploadFiles/Images/2024/202403/4b2ded93-9f96-489f-812e-c5e88f0bcf61.jpg"
-                  alt="节日装饰4"
-                  @error="onImgError" class="h-full w-full object-cover group-hover:scale-105 transition"
-                />
-              </div>
-              <div class="p-3 text-sm text-slate-700">节庆桌面摆件</div>
-            </a>
-            <a
-              href="/item/50904039"
-              class="group block rounded-md overflow-hidden bg-white border hover:shadow-lg transition"
-            >
-              <div class="aspect-square bg-slate-100 overflow-hidden">
-                <img
-                  src="https://resource.saleyee.com/UploadFiles/Images/2024/202403/424c4fdb-71a9-4620-a92a-35e59dbbdb73.jpg"
-                  alt="节日装饰5"
-                  @error="onImgError" class="h-full w-full object-cover group-hover:scale-105 transition"
-                />
-              </div>
-              <div class="p-3 text-sm text-slate-700">节庆门贴</div>
-            </a>
-            <a
-              href="/item/50904040"
-              class="group block rounded-md overflow-hidden bg-white border hover:shadow-lg transition"
-            >
-              <div class="aspect-square bg-slate-100 overflow-hidden">
-                <img
-                  src="https://resource.saleyee.com/UploadFiles/Images/2025/202509/49bbf525-ac11-4d7e-b8ba-f502c58b4407.jpg"
-                  alt="节日装饰6"
-                  @error="onImgError" class="h-full w-full object-cover group-hover:scale-105 transition"
-                />
-              </div>
-              <div class="p-3 text-sm text-slate-700">海外节庆装饰</div>
-            </a>
+          <h2 class="text-xl md:text-2xl font-semibold text-slate-900 mb-6 text-center">节日装饰</h2>
+          <div class="grid grid-cols-1 lg:grid-cols-6 gap-4">
+            <!-- 左侧大图广告 -->
+            <div class="lg:col-span-1">
+              <a href="#" class="block rounded overflow-hidden">
+                <img src="https://via.placeholder.com/200x600?text=Halloween" alt="万圣节专场" class="w-full h-full object-cover" />
+              </a>
+            </div>
+            <!-- 右侧商品网格 -->
+            <div class="lg:col-span-5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+              <a href="#" class="group block bg-white border border-slate-200 rounded hover:shadow-lg transition">
+                <div class="aspect-square bg-slate-100 overflow-hidden">
+                  <img src="https://via.placeholder.com/300?text=Product" alt="商品" @error="onImgError" class="h-full w-full object-cover group-hover:scale-105 transition" />
+                </div>
+                <div class="p-3">
+                  <p class="text-sm text-slate-700 line-clamp-2">万圣节装饰品</p>
+                </div>
+              </a>
+              <a href="#" class="group block bg-white border border-slate-200 rounded hover:shadow-lg transition">
+                <div class="aspect-square bg-slate-100 overflow-hidden">
+                  <img src="https://via.placeholder.com/300?text=Product" alt="商品" @error="onImgError" class="h-full w-full object-cover group-hover:scale-105 transition" />
+                </div>
+                <div class="p-3">
+                  <p class="text-sm text-slate-700 line-clamp-2">圣诞装饰花环</p>
+                </div>
+              </a>
+              <a href="#" class="group block bg-white border border-slate-200 rounded hover:shadow-lg transition">
+                <div class="aspect-square bg-slate-100 overflow-hidden">
+                  <img src="https://via.placeholder.com/300?text=Product" alt="商品" @error="onImgError" class="h-full w-full object-cover group-hover:scale-105 transition" />
+                </div>
+                <div class="p-3">
+                  <p class="text-sm text-slate-700 line-clamp-2">圣诞树</p>
+                </div>
+              </a>
+              <a href="#" class="group block bg-white border border-slate-200 rounded hover:shadow-lg transition">
+                <div class="aspect-square bg-slate-100 overflow-hidden">
+                  <img src="https://via.placeholder.com/300?text=Product" alt="商品" @error="onImgError" class="h-full w-full object-cover group-hover:scale-105 transition" />
+                </div>
+                <div class="p-3">
+                  <p class="text-sm text-slate-700 line-clamp-2">节日灯饰</p>
+                </div>
+              </a>
+              <a href="#" class="group block bg-white border border-slate-200 rounded hover:shadow-lg transition">
+                <div class="aspect-square bg-slate-100 overflow-hidden">
+                  <img src="https://via.placeholder.com/300?text=Product" alt="商品" @error="onImgError" class="h-full w-full object-cover group-hover:scale-105 transition" />
+                </div>
+                <div class="p-3">
+                  <p class="text-sm text-slate-700 line-clamp-2">圣诞老人摆件</p>
+                </div>
+              </a>
+              <a href="#" class="group block bg-white border border-slate-200 rounded hover:shadow-lg transition">
+                <div class="aspect-square bg-slate-100 overflow-hidden">
+                  <img src="https://via.placeholder.com/300?text=Product" alt="商品" @error="onImgError" class="h-full w-full object-cover group-hover:scale-105 transition" />
+                </div>
+                <div class="p-3">
+                  <p class="text-sm text-slate-700 line-clamp-2">圣诞挂饰</p>
+                </div>
+              </a>
+              <a href="#" class="group block bg-white border border-slate-200 rounded hover:shadow-lg transition">
+                <div class="aspect-square bg-slate-100 overflow-hidden">
+                  <img src="https://via.placeholder.com/300?text=Product" alt="商品" @error="onImgError" class="h-full w-full object-cover group-hover:scale-105 transition" />
+                </div>
+                <div class="p-3">
+                  <p class="text-sm text-slate-700 line-clamp-2">节日礼品袋</p>
+                </div>
+              </a>
+              <a href="#" class="group block bg-white border border-slate-200 rounded hover:shadow-lg transition">
+                <div class="aspect-square bg-slate-100 overflow-hidden">
+                  <img src="https://via.placeholder.com/300?text=Product" alt="商品" @error="onImgError" class="h-full w-full object-cover group-hover:scale-105 transition" />
+                </div>
+                <div class="p-3">
+                  <p class="text-sm text-slate-700 line-clamp-2">节日派对用品</p>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- 其他区块（示例） -->
+      <!-- 新品推荐 -->
       <section id="new" class="bg-white py-8">
         <div class="mx-auto w-full max-w-[1500px] md:w-[80%] md:min-w-[1200px] px-4 md:px-0">
-          <h2 class="text-xl md:text-2xl font-semibold text-slate-900 mb-4 text-center">{{ t('sections.new') }}</h2>
-          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-            <a
-              v-for="(src, idx) in newImages"
-              :key="'new-' + idx"
-              :href="idx % 2 === 0 ? '/item/50904039' : '/item/50904040'"
-              class="group rounded-md overflow-hidden bg-white border hover:shadow-lg transition"
-            >
-              <div class="aspect-square bg-slate-100 overflow-hidden">
-                <img :src="src" :alt="`新品${idx + 1}`" @error="onImgError" class="h-full w-full object-cover group-hover:scale-105 transition" />
-              </div>
-              <div class="p-3 text-sm text-slate-500">{{ t('cards.newArrival') }}</div>
-            </a>
+          <h2 class="text-xl md:text-2xl font-semibold text-slate-900 mb-6 text-center">新品推荐</h2>
+          <div class="grid grid-cols-1 lg:grid-cols-6 gap-4">
+            <!-- 左侧大图广告 -->
+            <div class="lg:col-span-1">
+              <a href="#" class="block rounded overflow-hidden">
+                <img src="https://via.placeholder.com/200x600?text=NewArrivals" alt="新品上市" class="w-full h-full object-cover" />
+              </a>
+            </div>
+            <!-- 右侧商品网格 -->
+            <div class="lg:col-span-5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+              <a v-for="i in 10" :key="'new-' + i" href="#" class="group block bg-white border border-slate-200 rounded hover:shadow-lg transition">
+                <div class="aspect-square bg-slate-100 overflow-hidden">
+                  <img src="https://via.placeholder.com/300?text=NewProduct" alt="新品" @error="onImgError" class="h-full w-full object-cover group-hover:scale-105 transition" />
+                </div>
+                <div class="p-3">
+                  <p class="text-sm text-slate-700 line-clamp-2">新品推荐商品 {{ i }}</p>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="region" class="bg-slate-50 py-8">
-        <div class="mx-auto w-full max-w-[1500px] md:w-[80%] md:min-w-[1200px] px-4 md:px-0">
-          <h2 class="text-xl md:text-2xl font-semibold text-slate-900 mb-4 text-center">{{ t('sections.region') }}</h2>
-          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-            <a
-              v-for="(src, idx) in regionImages"
-              :key="'region-' + idx"
-              :href="idx % 2 === 0 ? '/item/50904039' : '/item/50904040'"
-              class="group rounded-md overflow-hidden bg-white border hover:shadow-lg transition"
-            >
-              <div class="aspect-square bg-slate-100 overflow-hidden">
-                <img :src="src" :alt="`热卖${idx + 1}`" @error="onImgError" class="h-full w-full object-cover group-hover:scale-105 transition" />
-              </div>
-              <div class="p-3 text-sm text-slate-500">{{ t('cards.hotSale') }}</div>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section id="selected" class="bg-white py-8">
-        <div class="mx-auto w-full max-w-[1500px] md:w-[80%] md:min-w-[1200px] px-4 md:px-0">
-          <h2 class="text-xl md:text-2xl font-semibold text-slate-900 mb-4 text-center">{{ t('sections.selected') }}</h2>
-          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-            <a
-              v-for="i in 6"
-              :key="'sel-' + i"
-              :href="i % 2 === 1 ? '/item/50904039' : '/item/50904040'"
-              class="group rounded-md overflow-hidden bg-white border hover:shadow-lg transition"
-            >
-              <div class="aspect-square bg-slate-100 overflow-hidden">
-                <img :src="fallbackImage" alt="精选推荐" @error="onImgError" class="h-full w-full object-cover group-hover:scale-105 transition" />
-              </div>
-              <div class="p-3 text-sm text-slate-500">{{ t('cards.curated') }}</div>
-            </a>
-          </div>
-        </div>
-      </section>
-
+      <!-- 居家推荐 -->
       <section id="home" class="bg-slate-50 py-8">
         <div class="mx-auto w-full max-w-[1500px] md:w-[80%] md:min-w-[1200px] px-4 md:px-0">
-          <h2 class="text-xl md:text-2xl font-semibold text-slate-900 mb-4 text-center">{{ t('nav.home') }}</h2>
-          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-            <a
-              v-for="i in 6"
-              :key="'home-' + i"
-              :href="i % 2 === 1 ? '/item/50904039' : '/item/50904040'"
-              class="group rounded-md overflow-hidden bg-white border hover:shadow-lg transition"
-            >
-              <div class="aspect-square bg-slate-100 overflow-hidden">
-                <img :src="fallbackImage" alt="家居优选" @error="onImgError" class="h-full w-full object-cover group-hover:scale-105 transition" />
-              </div>
-              <div class="p-3 text-sm text-slate-500">{{ t('cards.homePreferred') }}</div>
-            </a>
+          <h2 class="text-xl md:text-2xl font-semibold text-slate-900 mb-6 text-center">居家推荐</h2>
+          <div class="grid grid-cols-1 lg:grid-cols-6 gap-4">
+            <!-- 左侧大图广告 -->
+            <div class="lg:col-span-1">
+              <a href="#" class="block rounded overflow-hidden">
+                <img src="https://via.placeholder.com/200x600?text=HomeDecor" alt="居家装饰" class="w-full h-full object-cover" />
+              </a>
+            </div>
+            <!-- 右侧商品网格 -->
+            <div class="lg:col-span-5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+              <a v-for="i in 10" :key="'home-' + i" href="#" class="group block bg-white border border-slate-200 rounded hover:shadow-lg transition">
+                <div class="aspect-square bg-slate-100 overflow-hidden">
+                  <img src="https://via.placeholder.com/300?text=HomeProduct" alt="居家商品" @error="onImgError" class="h-full w-full object-cover group-hover:scale-105 transition" />
+                </div>
+                <div class="p-3">
+                  <p class="text-sm text-slate-700 line-clamp-2">居家推荐商品 {{ i }}</p>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="kitchen" class="bg-white py-8">
+      <!-- 节庆产品 -->
+      <section id="seasonal" class="bg-white py-8">
         <div class="mx-auto w-full max-w-[1500px] md:w-[80%] md:min-w-[1200px] px-4 md:px-0">
-          <h2 class="text-xl md:text-2xl font-semibold text-slate-900 mb-4 text-center">{{ t('nav.kitchen') }}</h2>
-          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-            <a
-              v-for="i in 6"
-              :key="'kitchen-' + i"
-              :href="i % 2 === 1 ? '/item/50904039' : '/item/50904040'"
-              class="group rounded-md overflow-hidden bg-white border hover:shadow-lg transition"
-            >
-              <div class="aspect-square bg-slate-100 overflow-hidden">
-                <img :src="fallbackImage" alt="品类精选" @error="onImgError" class="h-full w-full object-cover group-hover:scale-105 transition" />
-              </div>
-              <div class="p-3 text-sm text-slate-500">{{ t('cards.categoryPicks') }}</div>
-            </a>
+          <h2 class="text-xl md:text-2xl font-semibold text-slate-900 mb-6 text-center">节庆产品</h2>
+          <div class="grid grid-cols-1 lg:grid-cols-6 gap-4">
+            <!-- 左侧大图广告 -->
+            <div class="lg:col-span-1">
+              <a href="#" class="block rounded overflow-hidden">
+                <img src="https://via.placeholder.com/200x600?text=Seasonal" alt="节庆" class="w-full h-full object-cover" />
+              </a>
+            </div>
+            <!-- 右侧商品网格 -->
+            <div class="lg:col-span-5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+              <a v-for="i in 10" :key="'seasonal-' + i" href="#" class="group block bg-white border border-slate-200 rounded hover:shadow-lg transition">
+                <div class="aspect-square bg-slate-100 overflow-hidden">
+                  <img src="https://via.placeholder.com/300?text=SeasonalProduct" alt="节庆商品" @error="onImgError" class="h-full w-full object-cover group-hover:scale-105 transition" />
+                </div>
+                <div class="p-3">
+                  <p class="text-sm text-slate-700 line-clamp-2">节庆产品 {{ i }}</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 平台产品 -->
+      <section id="platform-products" class="bg-slate-50 py-8">
+        <div class="mx-auto w-full max-w-[1500px] md:w-[80%] md:min-w-[1200px] px-4 md:px-0">
+          <h2 class="text-xl md:text-2xl font-semibold text-slate-900 mb-6 text-center">平台产品</h2>
+          <div class="grid grid-cols-1 lg:grid-cols-6 gap-4">
+            <!-- 左侧大图广告 -->
+            <div class="lg:col-span-1">
+              <a href="#" class="block rounded overflow-hidden">
+                <img src="https://via.placeholder.com/200x600?text=Platform" alt="平台产品" class="w-full h-full object-cover" />
+              </a>
+            </div>
+            <!-- 右侧商品网格 -->
+            <div class="lg:col-span-5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+              <a v-for="i in 10" :key="'platform-' + i" href="#" class="group block bg-white border border-slate-200 rounded hover:shadow-lg transition">
+                <div class="aspect-square bg-slate-100 overflow-hidden">
+                  <img src="https://via.placeholder.com/300?text=PlatformProduct" alt="平台商品" @error="onImgError" class="h-full w-full object-cover group-hover:scale-105 transition" />
+                </div>
+                <div class="p-3">
+                  <p class="text-sm text-slate-700 line-clamp-2">平台产品 {{ i }}</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 家居爆款热销精选 -->
+      <section id="bestsellers" class="bg-white py-8">
+        <div class="mx-auto w-full max-w-[1500px] md:w-[80%] md:min-w-[1200px] px-4 md:px-0">
+          <h2 class="text-xl md:text-2xl font-semibold text-slate-900 mb-6 text-center">家居爆款热销精选</h2>
+          <div class="grid grid-cols-1 lg:grid-cols-6 gap-4">
+            <!-- 左侧大图广告 -->
+            <div class="lg:col-span-1">
+              <a href="#" class="block rounded overflow-hidden">
+                <img src="https://via.placeholder.com/200x600?text=Bestsellers" alt="爆款" class="w-full h-full object-cover" />
+              </a>
+            </div>
+            <!-- 右侧商品网格 -->
+            <div class="lg:col-span-5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+              <a v-for="i in 10" :key="'bestseller-' + i" href="#" class="group block bg-white border border-slate-200 rounded hover:shadow-lg transition">
+                <div class="aspect-square bg-slate-100 overflow-hidden">
+                  <img src="https://via.placeholder.com/300?text=BestsellerProduct" alt="爆款商品" @error="onImgError" class="h-full w-full object-cover group-hover:scale-105 transition" />
+                </div>
+                <div class="p-3">
+                  <p class="text-sm text-slate-700 line-clamp-2">爆款商品 {{ i }}</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 品牌热品大牌联盟 -->
+      <section id="brands" class="bg-slate-50 py-8">
+        <div class="mx-auto w-full max-w-[1500px] md:w-[80%] md:min-w-[1200px] px-4 md:px-0">
+          <h2 class="text-xl md:text-2xl font-semibold text-slate-900 mb-6 text-center">品牌热品大牌联盟</h2>
+          <div class="grid grid-cols-1 lg:grid-cols-6 gap-4">
+            <!-- 左侧大图广告 -->
+            <div class="lg:col-span-1">
+              <a href="#" class="block rounded overflow-hidden">
+                <img src="https://via.placeholder.com/200x600?text=Brands" alt="品牌" class="w-full h-full object-cover" />
+              </a>
+            </div>
+            <!-- 右侧商品网格 -->
+            <div class="lg:col-span-5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+              <a v-for="i in 10" :key="'brand-' + i" href="#" class="group block bg-white border border-slate-200 rounded hover:shadow-lg transition">
+                <div class="aspect-square bg-slate-100 overflow-hidden">
+                  <img src="https://via.placeholder.com/300?text=BrandProduct" alt="品牌商品" @error="onImgError" class="h-full w-full object-cover group-hover:scale-105 transition" />
+                </div>
+                <div class="p-3">
+                  <p class="text-sm text-slate-700 line-clamp-2">品牌商品 {{ i }}</p>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
       </section>

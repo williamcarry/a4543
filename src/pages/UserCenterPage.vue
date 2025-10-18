@@ -186,7 +186,7 @@
                   @click="activeMenu = 'orders'"
                 />
                 <SidebarItem
-                  label="平台查单"
+                  label="平台载单"
                   :active="activeMenu === 'platform-orders'"
                   @click="activeMenu = 'platform-orders'"
                 />
@@ -496,6 +496,21 @@
             <!-- 商品通知面板 -->
             <ProductNotificationPage v-else-if="activeMenu === 'product-notification'" />
 
+            <!-- 返现活动面板 -->
+            <CashbackActivityPage v-else-if="activeMenu === 'sales'" />
+
+            <!-- 询价单面板 -->
+            <InquiryOrderPage v-else-if="activeMenu === 'inquiry-order'" />
+
+            <!-- 我的订单面板 -->
+            <MyOrderPage v-else-if="activeMenu === 'orders'" />
+
+            <!-- 平台载单面板 -->
+            <PlatformOrderPage v-else-if="activeMenu === 'platform-orders'" />
+
+            <!-- 批量下单面板 -->
+            <BatchOrderPage v-else-if="activeMenu === 'batch-orders'" />
+
             <!-- 其他面板 -->
             <div v-else class="bg-white rounded-lg border border-slate-200 p-6">
               <el-empty description="此功能开发中..." />
@@ -539,6 +554,11 @@ import ListingPushPage from '@/pages/ListingPushPage.vue'
 import ListingProductsPage from '@/pages/ListingProductsPage.vue'
 import BrandAuthPage from '@/pages/BrandAuthPage.vue'
 import ProductNotificationPage from '@/pages/ProductNotificationPage.vue'
+import CashbackActivityPage from '@/pages/CashbackActivityPage.vue'
+import InquiryOrderPage from '@/pages/InquiryOrderPage.vue'
+import MyOrderPage from '@/pages/MyOrderPage.vue'
+import PlatformOrderPage from '@/pages/PlatformOrderPage.vue'
+import BatchOrderPage from '@/pages/BatchOrderPage.vue'
 
 const activeMenu = ref('info')
 const expandedGroups = ref<Record<string, boolean>>({
@@ -573,7 +593,7 @@ const menuLabels: Record<string, string> = {
   sales: '返现活动',
   'inquiry-order': '咨价单',
   orders: '我的订单',
-  'platform-orders': '平台查单',
+  'platform-orders': '平台载单',
   'batch-orders': '批量下单',
   'exception-orders': '异常订单',
   'after-sales-management': '售后管理',
