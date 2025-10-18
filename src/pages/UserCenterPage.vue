@@ -210,7 +210,7 @@
                 class="w-full text-slate-900 px-4 py-3 font-medium flex items-center gap-2 border-b border-slate-200 hover:bg-slate-50 transition cursor-pointer"
               >
                 <Users class="h-5 w-5" />
-                <span>客户服务</span>
+                <span>客户服��</span>
                 <ChevronDown
                   class="h-4 w-4 ml-auto transition-transform duration-300"
                   :style="{ transform: expandedGroups.customers ? 'rotate(0deg)' : 'rotate(-90deg)' }"
@@ -431,7 +431,7 @@
                   <el-table-column prop="ratio" label="占比" />
                 </el-table>
                 <div class="mt-4 flex gap-2">
-                  <el-button type="primary" size="small">详查</el-button>
+                  <el-button type="primary" size="small">详��</el-button>
                   <el-button size="small">下载</el-button>
                 </div>
               </div>
@@ -511,6 +511,9 @@
             <!-- 批量下单面板 -->
             <BatchOrderPage v-else-if="activeMenu === 'batch-orders'" />
 
+            <!-- 异常订单面板 -->
+            <ExceptionOrderPage v-else-if="activeMenu === 'exception-orders'" />
+
             <!-- 其他面板 -->
             <div v-else class="bg-white rounded-lg border border-slate-200 p-6">
               <el-empty description="此功能开发中..." />
@@ -559,6 +562,7 @@ import InquiryOrderPage from '@/pages/InquiryOrderPage.vue'
 import MyOrderPage from '@/pages/MyOrderPage.vue'
 import PlatformOrderPage from '@/pages/PlatformOrderPage.vue'
 import BatchOrderPage from '@/pages/BatchOrderPage.vue'
+import ExceptionOrderPage from '@/pages/ExceptionOrderPage.vue'
 
 const activeMenu = ref('info')
 const expandedGroups = ref<Record<string, boolean>>({

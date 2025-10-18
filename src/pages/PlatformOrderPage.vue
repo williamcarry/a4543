@@ -109,7 +109,7 @@
             <!-- 平台账号 -->
             <div class="w-1/2 float-left p-2.5 min-h-[44px]">
               <div class="inline-flex items-center gap-2.5 w-full">
-                <span class="inline-block w-[120px] text-right leading-[34px] text-slate-700">平台账号：</span>
+                <span class="inline-block w-[120px] text-right leading-[34px] text-slate-700">平台账���：</span>
                 <input
                   v-model="platformAccount"
                   type="text"
@@ -294,9 +294,37 @@
           <button type="button" class="px-6 py-2 bg-primary text-white rounded font-medium text-sm hover:bg-primary-dark transition">
             手动载单
           </button>
-          <em class="text-xs text-orange-600 border border-orange-300 px-3 py-2 rounded bg-orange-50">
-            [ 注意事项 ]
-          </em>
+          <div class="relative">
+            <em
+              class="text-xs text-orange-600 border border-orange-300 px-3 py-2 rounded bg-orange-50 cursor-pointer inline-block"
+              @mouseenter="showNoticePopover = true"
+              @mouseleave="showNoticePopover = false"
+            >
+              [ 注意事项 ]
+            </em>
+            <!-- 弹出框 -->
+            <div
+              v-if="showNoticePopover"
+              class="absolute bottom-full mb-2 right-0 w-80 bg-orange-50 border border-orange-300 rounded px-4 py-3 text-xs text-orange-600 shadow-lg z-50"
+              @mouseenter="showNoticePopover = true"
+              @mouseleave="showNoticePopover = false"
+            >
+              <!-- 弹出框箭头 -->
+              <div class="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-orange-300"></div>
+              <!-- 弹出框内容 -->
+              <ul class="space-y-2 list-decimal list-inside">
+                <li>信息生成订单前，确定无遗漏订单，避免遗漏订单尺寸；</li>
+                <li>同时所有SKU无不同映射，除已取消的订单外；</li>
+                <li>暂不支持修改订单，若订单信息需变动，请手动删除订单；</li>
+                <li>创建订单可至我的订单"中选择平台订单查看；</li>
+                <li>不同类货区域SKU去拆单；</li>
+                <li>拆单的订单将有对应号每一性上传传；</li>
+                <li>务必完整号变更来应该的同构，订单已发货后之后支持上传跟踪号；</li>
+                <li>跨越号上传有最长30分钟的延迟，上传跟踪号后请耐心等待；</li>
+                <li>当前不支持异号追选号跨越号上传，请手动上传</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </form>
     </div>
@@ -446,6 +474,7 @@ const trackingStatus = ref('')
 const uploadStatus = ref('')
 const isSplit = ref('')
 const openDropdown = ref<string | null>(null)
+const showNoticePopover = ref(false)
 
 const platformTypeOptions = [
   { value: '', label: '全部' },
@@ -574,7 +603,7 @@ const platformOrders: PlatformOrder[] = [
   {
     id: 3,
     platformOrderNo: 'WISH-20251016-234',
-    productName: '防水运动手表',
+    productName: '防水运动手���',
     amount: 45.00,
     loadStatus: '生成失败',
     trackingStatus: '未产生',
