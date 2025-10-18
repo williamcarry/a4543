@@ -117,7 +117,7 @@ onUnmounted(() => window.removeEventListener('resize', updateHeroHeight))
   <div v-else id="top" class="min-h-screen flex flex-col">
     <SiteHeader />
     <main class="flex-1">
-      <div class="mx-auto w-full max-w-[1500px] md:w-[80%] md:min-w-[1200px] px-4 md:px-0">
+      <div class="mx-auto w-full max-w-[1500px] md:w-[80%] md:min-w-[1150px] px-4 md:px-0">
         <el-row :gutter="0">
           <el-col :xs="0" :md="6" class="hidden md:block">
             <CategorySidebar />
@@ -134,7 +134,7 @@ onUnmounted(() => window.removeEventListener('resize', updateHeroHeight))
 
       <!-- 平台精选 -->
       <section id="platform" class="bg-white py-8">
-        <div class="mx-auto w-full max-w-[1500px] md:w-[80%] md:min-w-[1200px] px-4 md:px-0">
+        <div class="mx-auto w-full max-w-[1500px] md:w-[80%] md:min-w-[1150px] px-4 md:px-0">
           <h2 class="text-xl md:text-2xl font-semibold text-slate-900 mb-6 text-center">平台精选</h2>
           <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
             <a href="#" class="group block bg-white border border-slate-200 rounded hover:shadow-lg transition p-4">
@@ -173,7 +173,7 @@ onUnmounted(() => window.removeEventListener('resize', updateHeroHeight))
 
       <!-- 节日装饰 -->
       <section id="festival" class="bg-slate-50 py-8">
-        <div class="mx-auto w-full max-w-[1500px] md:w-[80%] md:min-w-[1200px] px-4 md:px-0">
+        <div class="mx-auto w-full max-w-[1500px] md:w-[80%] md:min-w-[1150px] px-4 md:px-0">
           <h2 class="text-xl md:text-2xl font-semibold text-slate-900 mb-6 text-center">节日装饰</h2>
           <div class="grid grid-cols-1 lg:grid-cols-6 gap-4">
             <!-- 左侧大图广告 -->
@@ -255,7 +255,7 @@ onUnmounted(() => window.removeEventListener('resize', updateHeroHeight))
 
       <!-- 新品推荐 -->
       <section id="new" class="bg-white py-8">
-        <div class="mx-auto w-full max-w-[1500px] md:w-[80%] md:min-w-[1200px] px-4 md:px-0">
+        <div class="mx-auto w-full max-w-[1500px] md:w-[80%] md:min-w-[1150px] px-4 md:px-0">
           <h2 class="text-xl md:text-2xl font-semibold text-slate-900 mb-6 text-center">新品推荐</h2>
           <div class="grid grid-cols-1 lg:grid-cols-6 gap-4">
             <!-- 左侧大图广告 -->
@@ -281,7 +281,7 @@ onUnmounted(() => window.removeEventListener('resize', updateHeroHeight))
 
       <!-- 居家推荐 -->
       <section id="home" class="bg-slate-50 py-8">
-        <div class="mx-auto w-full max-w-[1500px] md:w-[80%] md:min-w-[1200px] px-4 md:px-0">
+        <div class="mx-auto w-full max-w-[1500px] md:w-[80%] md:min-w-[1150px] px-4 md:px-0">
           <h2 class="text-xl md:text-2xl font-semibold text-slate-900 mb-6 text-center">居家推荐</h2>
           <div class="grid grid-cols-1 lg:grid-cols-6 gap-4">
             <!-- 左侧大图广告 -->
@@ -307,7 +307,7 @@ onUnmounted(() => window.removeEventListener('resize', updateHeroHeight))
 
       <!-- 节庆产品 -->
       <section id="seasonal" class="bg-white py-8">
-        <div class="mx-auto w-full max-w-[1500px] md:w-[80%] md:min-w-[1200px] px-4 md:px-0">
+        <div class="mx-auto w-full max-w-[1500px] md:w-[80%] md:min-w-[1150px] px-4 md:px-0">
           <h2 class="text-xl md:text-2xl font-semibold text-slate-900 mb-6 text-center">节庆产品</h2>
           <div class="grid grid-cols-1 lg:grid-cols-6 gap-4">
             <!-- 左侧大图广告 -->
@@ -333,7 +333,7 @@ onUnmounted(() => window.removeEventListener('resize', updateHeroHeight))
 
       <!-- 平台产品 -->
       <section id="platform-products" class="bg-slate-50 py-8">
-        <div class="mx-auto w-full max-w-[1500px] md:w-[80%] md:min-w-[1200px] px-4 md:px-0">
+        <div class="mx-auto w-full max-w-[1500px] md:w-[80%] md:min-w-[1150px] px-4 md:px-0">
           <h2 class="text-xl md:text-2xl font-semibold text-slate-900 mb-6 text-center">平台产品</h2>
           <div class="grid grid-cols-1 lg:grid-cols-6 gap-4">
             <!-- 左侧大图广告 -->
@@ -359,7 +359,7 @@ onUnmounted(() => window.removeEventListener('resize', updateHeroHeight))
 
       <!-- 家居爆款热销精选 -->
       <section id="bestsellers" class="bg-white py-8">
-        <div class="mx-auto w-full max-w-[1500px] md:w-[80%] md:min-w-[1200px] px-4 md:px-0">
+        <div class="mx-auto w-full max-w-[1500px] md:w-[80%] md:min-w-[1150px] px-4 md:px-0">
           <h2 class="text-xl md:text-2xl font-semibold text-slate-900 mb-6 text-center">家居爆款热销精选</h2>
           <div class="grid grid-cols-1 lg:grid-cols-6 gap-4">
             <!-- 左侧大图广告 -->
@@ -385,7 +385,7 @@ onUnmounted(() => window.removeEventListener('resize', updateHeroHeight))
 
       <!-- 品牌热品大牌联盟 -->
       <section id="brands" class="bg-slate-50 py-8">
-        <div class="mx-auto w-full max-w-[1500px] md:w-[80%] md:min-w-[1200px] px-4 md:px-0">
+        <div class="mx-auto w-full max-w-[1500px] md:w-[80%] md:min-w-[1150px] px-4 md:px-0">
           <h2 class="text-xl md:text-2xl font-semibold text-slate-900 mb-6 text-center">品牌热品大牌联盟</h2>
           <div class="grid grid-cols-1 lg:grid-cols-6 gap-4">
             <!-- 左侧大图广告 -->

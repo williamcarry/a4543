@@ -3,7 +3,7 @@
     <!-- Top utility bar -->
     <div class="hidden md:block bg-slate-50 text-slate-600 text-sm">
       <div
-        class="mx-auto w-full max-w-[1500px] md:w-[80%] md:min-w-[1200px] px-4 md:px-0 flex items-center justify-between py-2"
+        class="mx-auto w-full max-w-[1500px] md:w-[80%] md:min-w-[1150px] px-4 md:px-0 flex items-center justify-between py-2"
       >
         <nav class="flex items-center gap-5">
           <a href="#" class="hover:text-primary">{{ t('header.international') }}</a>

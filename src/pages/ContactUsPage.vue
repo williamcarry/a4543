@@ -35,7 +35,7 @@
           </div>
         </div>
         <nav class="header-nav">
-          <a class="nav-link" href="/">首页</a>
+          <a class="nav-link" href="/">首��</a>
           <a class="nav-link" href="/help-center">帮助中心</a>
           <a class="nav-link" href="https://www.saleyee.com/faq.html" target="_blank" rel="noreferrer">常见问题</a>
           <a class="nav-link" href="https://www.saleyee.com/guide.html" target="_blank" rel="noreferrer">操作指引</a>
@@ -63,7 +63,7 @@
               <div class="contact-text">
                 <h5>客户服务支持</h5>
                 <p>东南、华东、华北客户经理：<br /><strong>18059185796</strong></p>
-                <p>华南、华西客户经理：<br /><strong>17301942893</strong></p>
+                <p>华南、华西���户经理：<br /><strong>17301942893</strong></p>
                 <p>联系邮箱：<br /><strong><a href="mailto:service@saleyee.cn">service@saleyee.cn</a></strong></p>
                 <p>工作时间：9:00-18:00（周一至周六）</p>
               </div>
@@ -115,7 +115,7 @@
               <div class="contact-text">
                 <h5>公司信息</h5>
                 <p>公司名称：<br />深圳赛盈网络有限公司</p>
-                <p>公司地址：<br />中国香港九龙观塘道348号宏利广场6楼</p>
+                <p>公司地址：<br />中国香港九龙观塘道348号宏利广场6���</p>
               </div>
             </li>
           </ul>
@@ -188,7 +188,8 @@ import { Headset as HeadsetIcon, CheckCircle as CheckCircleIcon, Handshake as Ha
 
 .container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1500px;
+  min-width: 1150px;
   margin: 0 auto;
   padding: 0 16px;
   box-sizing: border-box;

@@ -85,7 +85,7 @@
               <img src="https://www.saleyee.com/ContentNew/Images/about_service1.png" alt="跨境电商货源分销服务" class="service-image" />
               <div class="service-content">
                 <h3>跨境电商货源分销服务</h3>
-                <p>赛盈分销平台，甄选60000+欧美海外仓精品货源，涵盖家居、运动健身、健康美容、汽配、玩具等13个大品类产品，为Amazon、eBay、Wish、Walmart及Shopify等平台卖家提供海外仓包邮一件代发服务。</p>
+                <p>赛盈分销平台，甄选60000+欧美海外仓精品货源，涵盖家居、运动健身、健康美容、汽配、玩具等13个大品类产品，为Amazon、eBay、Wish、Walmart及Shopify等平台卖家提供海外���包邮一件代发服务。</p>
                 <a href="/distributors" class="service-link">分销商免费入驻</a>
               </div>
             </div>
@@ -213,7 +213,8 @@ const prevWarehouse = () => {
 
 .container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1500px;
+  min-width: 1150px;
   margin: 0 auto;
   padding: 0 16px;
   box-sizing: border-box;

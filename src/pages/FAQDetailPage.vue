@@ -10,14 +10,14 @@
             target="_blank"
             rel="noreferrer"
           >
-            <span>【公告】TENGMING LIMITED 公司名称冒用声明</span>
+            <span>【公告】TENGMING LIMITED 公司名称被冒用声明</span>
           </a>
         </div>
         <div class="faq-top-bar__right">
           <a class="faq-top-bar__link" href="/login">登录</a>
           <a class="faq-top-bar__link" href="/register">注册</a>
           <a class="faq-top-bar__link" href="/getting-started">入门指引</a>
-          <a class="faq-top-bar__link" href="/membership">会员���益</a>
+          <a class="faq-top-bar__link" href="/membership">会员权益</a>
         </div>
       </div>
     </div>
@@ -163,7 +163,7 @@
             <li><a href="/faq/hp062361">支付方式</a></li>
             <li><a href="/faq/hp981158">物流方式</a></li>
             <li><a href="/help/vat-policy">VAT政策解读</a></li>
-            <li><a href="https://www.saleyee.com/feedback.html" target="_blank" rel="noreferrer">体验反馈</a></li>
+            <li><a href="https://www.saleyee.com/feedback.html" target="_blank" rel="noreferrer">体��反馈</a></li>
           </ul>
         </div>
         <div class="faq-footer__col">
@@ -232,7 +232,7 @@ const articleDatabase: Record<string, any> = {
   <p>赛盈分销平台售后服务条款仅适用于通过赛盈分销平台采购的商品。本平台代表实际供应商处理售后事务，确保分销商权益。</p>
   <p><strong>【重要提示与说明】</strong></p>
   <ol>
-    <li>本售后款内容可能因平台政策调整而发���变化，请以最新发布的条款为准；</li>
+    <li>本售后款内容可能因平台政��调整而发���变化，请以最新发布的条款为准；</li>
     <li>若平台调整条款，将通过官方渠道提前公告；</li>
     <li>条��定期更新，请用户关注官方最新版本。</li>
   </ol>
@@ -240,7 +240,7 @@ const articleDatabase: Record<string, any> = {
   <h2><strong>二、物流问题</strong></h2>
   <p>物流问题售后有效期为 <strong>40个自然日</strong>，自订单支付完成之日起计算。</p>
   <ol>
-    <li><strong>未妥投：</strong>指订单在规定时间内未送达收货地��，平台核实后提供重发/补发/退款；</li>
+    <li><strong>未妥���：</strong>指订单在规定时间内未送达收货地��，平台核实后提供重发/补发/退款；</li>
     <li><strong>破损：</strong>��商品在物流过程中受到损伤，按官方轨迹显示处理；</li>
     <li><strong>错发/漏发：</strong>指物流公司发错或漏发订单，平台提供补偿；</li>
     <li><strong>退货/重发：</strong>用户可申请退货或重新发货，平台负责协调���</li>
@@ -250,7 +250,7 @@ const articleDatabase: Record<string, any> = {
 
   <h2><strong>三、破损售后</strong></h2>
   <p>破损售后有效期为 <strong>40个自然日</strong>，自订单支付完成之日起计算。</p>
-  <p>赛盈平台提供 <strong>RL退货标签</strong>，用户可按指引办理退货及重发流程。破损商品可申��全额赔付或重发。</p>
+  <p>赛盈平���提供 <strong>RL退货标签</strong>，用户可按指引办理退货及重发流程。破损商品可申��全额赔付或重发。</p>
   <p><strong>申诉售后须提交的资料：</strong></p>
   <p>a. 订单号与支付截图<br/>b. 破损商品照���（3张以上）<br/>c. 物流单号<br/>d. 退货单据</p>
 
@@ -284,7 +284,7 @@ const articleDatabase: Record<string, any> = {
 
   <h2><strong>七、售中售后退款金额说明</strong></h2>
   <p>退款金额 = 订单金额 - 支付手续费。</p>
-  <p>退款方式��据原支付方式返还，退款至账户需要 <strong>7个��作日</strong>。</p>
+  <p>退款方式��据原支付方��返还，退款至账户需要 <strong>7个��作日</strong>。</p>
   <p>特殊支付方式（支付宝、信用卡、微信等）将原路退回。</p>
 
   <h2><strong>八、赛盈分销平台售���处理时效</strong></h2>
@@ -299,7 +299,7 @@ const articleDatabase: Record<string, any> = {
   <p><a href="#" style="color: #ff0000; font-weight: bold;">物流保障服务详情 &gt;&gt;</a></p>
   <p><a href="#" style="color: #ff0000; font-weight: bold;">退货保障服务详情 &gt;&gt;</a></p>
   <p style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
-    <strong>温馨提示：</strong>若分销商无法提供实质性证明材料，平台不予受理申诉。��妥善保管订单截图、物流凭证及相关凭据。
+    <strong>温馨提示：</strong>若分销商无法提供实质性证明材料，平台不予受理申诉�����妥善保管订单截图、物流凭证及相关凭据。
   </p>
 </div>
 `,
@@ -307,7 +307,7 @@ const articleDatabase: Record<string, any> = {
   hp718571: {
     id: 'hp718571',
     title: '支付手续费问题',
-    fullTitle: '为什么退款的时候支付手���费不退？',
+    fullTitle: '为什么退款的时候支付�����费不退？',
     category: '支付问题',
     subcategory: '币种及手续费相关问题',
     subcategoryKey: 'payment-fee',
@@ -324,7 +324,7 @@ const articleDatabase: Record<string, any> = {
   <h2><strong>关键说明</strong></h2>
   <ol>
     <li><strong>支付手续费的产生</strong>：每笔支付交易都会产��对应的支付处理费用，这部分��用是在���付时就已经由支付服务商收取的。</li>
-    <li><strong>不可退还的原因</strong>：由于支付手续费已在支付时立即产生并被支付服务商收取，因此退款时无法将该部分费用退回给分销��。</li>
+    <li><strong>不可���还的原因</strong>：由于支付手续费已在支��时立即产生并被支付服务商收取，因此退款时无法将该部分费用退回给分销��。</li>
     <li><strong>退款计算公式</strong>：退款金额 = 订单金额 - 支付手续费（不含支付手续费退还）。</li>
     <li><strong>退款方式</strong>：根据原支付方式返还，退款至账户需要7����作日，特殊支付方式（支付宝、信用卡、微信等）将原路退回。</li>
   </ol>
@@ -340,7 +340,7 @@ const articleDatabase: Record<string, any> = {
   <p>A: 一般情况下，退款需要7个工作日到账。具体到账���间根据支付方式的不同可能有所差异。</p>
 
   <h2><strong>相关条款链接</strong></h2>
-  <p>更多关于退款和支付的详细规则，请查阅以下文档：</p>
+  <p>更多关于退款和支���的详细规则，请查阅以下文档：</p>
   <ul>
     <li><a href="/faq/hp246053" style="color: #0000ff;">售后条款 - 第7条 售中售后退款金额说明</a></li>
     <li><a href="/help-center" style="color: #0000ff;">帮助中心 - 完整的支付相关文档</a></li>
@@ -360,7 +360,7 @@ Object.assign(articleDatabase, {
     subcategoryKey: 'after-sale-rules',
     publishTime: '',
     content: `
-<div class="help_problem_details"><div class="level_page"><h5>售后服务</h5><div class="level_page_items"><p>售后规则</p><ul><li><a href="/faq/hp627013.html">中国直发专区“服装”售后服务规则说明</a></li></ul></div><div class="level_page_items"><p>售后咨询</p><ul><li><a href="/faq/hp599293.html">如何联系平台客服查询我的订单状态/物流信息/售后工单？</a></li><li><a href="/faq/hp491825.html">商品售后不同情况应对处理流程</a></li></ul></div><div class="level_page_items"><p>售后退货</p><ul><li><a href="/faq/hp374193.html">什么是RL?</a></li><li><a href="/faq/hp668882.html">平台持无理由退货吗？</a></li><li><a href="/faq/hp595031.html">订单退货规定详情说明</a></li></ul></div><div class="level_page_items"><p>退款说明</p><ul><li><a href="/faq/hp285190.html">订单退款金额去向说��</a></li></ul></div><div class="level_page_items"><p>退货保障服务</p><ul><li><a href="/faq/hp503378.html">退货保障服务规则说明</a></li><li><a href="/faq/hp374068.html">退货保障服务生效前的历史订单处理说明</a></li><li><a href="/faq/hp094085.html">��品质量问题没有购买退货保障服务如何处理？</a></li><li><a href="/faq/hp763098.html">若分销商“无理由退货”售后率过高，平台保留调整以及限制购买退货保障服务的权利</a></li><li><a href="/faq/hp309528.html">如何购买退货保障服务？</a></li></ul></div></div><div class="view-list"><div class="templet-page"><input type="hidden" id="hiddenurl" value="/faq/hc271661.html"><div class="total-page"><p>共2页，前往第 <input type="text" id="a_link_page"> 页<input type="button" id="btn_a_link" value="GO"></p></div><ul class="page-nub"><li><a href="javascript:void(0);" class="on">1</a></li><li><a onclick="javascript: ZTLayer.showLoading();" href="/faq/hc271661.html?pageIndex=2">2</a></li><li><a onclick="javascript: ZTLayer.showLoading();" href="/faq/hc271661.html?pageIndex=2">下一页</a></li></ul></div></div></div><div class="clear_float"></div>
+<div class="help_problem_details"><div class="level_page"><h5>售后服务</h5><div class="level_page_items"><p>售后规则</p><ul><li><a href="/faq/hp627013.html">中国直发专区“服装”售后服务规则说明</a></li></ul></div><div class="level_page_items"><p>售后咨询</p><ul><li><a href="/faq/hp599293.html">如何联系平台客服查询我的订单状态/物流信息/售后工单？</a></li><li><a href="/faq/hp491825.html">商品售后不同情况应对处理流程</a></li></ul></div><div class="level_page_items"><p>售后退货</p><ul><li><a href="/faq/hp374193.html">什么是RL?</a></li><li><a href="/faq/hp668882.html">平台持无理由退货吗？</a></li><li><a href="/faq/hp595031.html">订单退货规定详情说明</a></li></ul></div><div class="level_page_items"><p>退款说明</p><ul><li><a href="/faq/hp285190.html">订单退款金额去向说��</a></li></ul></div><div class="level_page_items"><p>退货保障服务</p><ul><li><a href="/faq/hp503378.html">退货保障服务规则说明</a></li><li><a href="/faq/hp374068.html">退货保障服务生效前的历史订单处理说明</a></li><li><a href="/faq/hp094085.html">��品质量问题没有购买退货保障���务如何处理？</a></li><li><a href="/faq/hp763098.html">若分销商“无理由退货”售后率过高，平台保留调整以及限制购买退货保障服务的权利</a></li><li><a href="/faq/hp309528.html">如何购买退货保障服务？</a></li></ul></div></div><div class="view-list"><div class="templet-page"><input type="hidden" id="hiddenurl" value="/faq/hc271661.html"><div class="total-page"><p>共2页，前往第 <input type="text" id="a_link_page"> 页<input type="button" id="btn_a_link" value="GO"></p></div><ul class="page-nub"><li><a href="javascript:void(0);" class="on">1</a></li><li><a onclick="javascript: ZTLayer.showLoading();" href="/faq/hc271661.html?pageIndex=2">2</a></li><li><a onclick="javascript: ZTLayer.showLoading();" href="/faq/hc271661.html?pageIndex=2">下��页</a></li></ul></div></div></div><div class="clear_float"></div>
     `,
   },
   hp062361: {
@@ -385,14 +385,14 @@ Object.assign(articleDatabase, {
                         <div class="help_problem_time">
                             <span>发布时间：<em>2023/10/27 14:00:00</em></span>
                                 <span>分类：
-                                        <a href="/guide/hc676402.html">支��操作指引</a>&gt;<a href="/guide/hc713134.html">支付方式介绍</a>
+                                        <a href="/guide/hc676402.html">支��操作指引</a>&gt;<a href="/guide/hc713134.html">支��方式介绍</a>
                                 </span>
 
                         </div>
                         <div class="help_rich_text">
                             <div style="text-align: justify;"><span style="font-size: 11pt;"><br>关于赛盈分销平台上的支付方式及手续费规则的相关说明如下：<br><br><br><strong><span style="font-size: 13pt;">一、支付方式：</span></strong></span><strong><br><br></strong><strong><span style="font-size: 11pt;">1. Airwallex Pay</span><br><img src="https://resource.saleyee.cn/Content/Images/uploaded/帮助中心-支付方式/空中云汇.png?v=1174939608" alt=""></strong><br><span style="font-size: 11pt;">（1）支持美元，欧元，英镑及加元订单支付；</span></div>
 <div style="text-align: justify;"><span style="font-size: 11pt;">（2）申请售中售后退款时，资金将会默认退回您的赛盈余额账户，您可以继续消费，或选择提现；</span></div>
-<div style="text-align: justify;"><span style="font-size: 11pt;">（3）线下充值非实时到账。</span><br><br><span style="font-size: 11pt;"><strong>2. Payoneer</strong></span><br><img src="https://resource.saleyee.cn/Content/Images/uploaded/帮助中心-支付方式/payonner.png?v=347031152" alt=""><br><span style="font-size: 11pt;">（1）支持美元，欧元及英镑订单支付；</span><br><span style="font-size: 11pt;">（2）单笔支付金额��台无限制，如在支付��遇到限额问题，可联系Payoneer客服提升您的支付额度；</span><br><span style="font-size: 11pt;">（3）线下充值非实时到账。</span><strong><br></strong><br><br><span style="font-size: 11pt;"><strong>3. 银行转账</strong></span><strong><br></strong><img src="https://resource.saleyee.cn/Content/Images/uploaded/帮助中心-支付方式/bank.png?v=440062435" alt=""><br><span style="font-size: 11pt;">（1）仅支持线下的银行汇款，非实时到账，用户在线下汇款完成后需要到“个人中心-资产管理-我的余额-汇款”界面填写汇款单，平台核实到账以后将为您充值到账；</span><br><span style="font-size: 11pt;">（2）支持美元、欧元、英镑、加元币种的汇款；</span><br><span style="font-size: 11pt;">（3）在汇款过程中，银行会收取一定的手续费，您的充值金额=赛盈收款账户的实际到账金额；</span><br><span style="font-size: 11pt;">（4）��支持跨支付方式转账，通过银行转账以外的方式汇款到我方银行收款账户的资金不予受理，如造成损失��需自行承担。</span></div>
+<div style="text-align: justify;"><span style="font-size: 11pt;">（3）线下充值非实时到账。</span><br><br><span style="font-size: 11pt;"><strong>2. Payoneer</strong></span><br><img src="https://resource.saleyee.cn/Content/Images/uploaded/帮助中心-支付方式/payonner.png?v=347031152" alt=""><br><span style="font-size: 11pt;">（1）支持美元，欧元及英镑订单支付；</span><br><span style="font-size: 11pt;">（2）单笔支付金额��台无限制，如在支付��遇到限额问题，可联系Payoneer客服提升您的支付额度；</span><br><span style="font-size: 11pt;">（3）线下充值非实时到账。</span><strong><br></strong><br><br><span style="font-size: 11pt;"><strong>3. 银行转账</strong></span><strong><br></strong><img src="https://resource.saleyee.cn/Content/Images/uploaded/帮助中心-支付方式/bank.png?v=440062435" alt=""><br><span style="font-size: 11pt;">（1）仅支持线下的银行汇款，非实时到账，用户在线下汇款完成后需要到“个人中心-资产管理-我的余额-汇款”界面填写汇款单，平台核实到账以后将为您充值到账；</span><br><span style="font-size: 11pt;">（2）支持美元、欧元、英镑、加元币种的汇款；</span><br><span style="font-size: 11pt;">（3）在汇款过程中，银行会收取一定的手续费，您的充值金额=赛盈收款账���的实际到账金额；</span><br><span style="font-size: 11pt;">（4）��支持跨支付方式转账，通过银行转账以外的方式汇款到我方银行收款账户的资金不予受理，如造成损失��需自行承担。</span></div>
 <div style="text-align: justify;">&nbsp;</div>
 <div style="text-align: justify;">
 <div data-lark-html-role="root">
@@ -415,14 +415,14 @@ Object.assign(articleDatabase, {
 <div class="richTextContainer text-align-left" dir="auto" data-partial-quote-enabled="true"><strong><span class="text-only" data-eleid="3">4. 微信支付</span></strong></div>
 <div class="richTextContainer text-align-left" dir="auto" data-partial-quote-enabled="true"><strong><span class="text-only" data-eleid="3">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <img src="https://resource.saleyee.cn/UploadFiles/Images/2024/202404/83eb66f1-6b7e-45ef-8931-4f4d2762776d.png" width="79" height="70"></span></strong></div>
 <div class="richTextContainer text-align-left" dir="auto" data-partial-quote-enabled="true"><span class="text-only" data-eleid="6">（1）可直接支付赛盈订单，不支持账户余额充值；</span></div>
-<div class="richTextContainer text-align-left" dir="auto" data-partial-quote-enabled="true"><span class="text-only" data-eleid="8">（2）支付时，微信会将美元、欧元、英镑和加元币种的支付金额按照微信官方实时汇率转��为人民币付款，支持用绑定的储蓄卡或信用卡支付；</span></div>
+<div class="richTextContainer text-align-left" dir="auto" data-partial-quote-enabled="true"><span class="text-only" data-eleid="8">（2）支付时，微信会将美元、欧元、英镑和加元币种的支付金额按照微信官方实时汇率转��为人民币付款，支持用绑定的储���卡或信用卡支付；</span></div>
 <div class="richTextContainer text-align-left" dir="auto" data-partial-quote-enabled="true"><span class="text-only" data-eleid="10">（3）仅支持微信大陆钱包认证用户使用，不支持用回乡证（港澳台往来大陆通行证）认证的用户使用；</span></div>
 ... (truncated for brevity) ...
     `,
   },
   hp981158: {
     id: 'hp981158',
-    title: '平台上各区域相关发货物流方式',
+    title: '平台上��区域相关发货物流方式',
     fullTitle: '平台上各区域相关发货物流方式',
     category: '物流方式',
     subcategory: '物流信息',
@@ -440,7 +440,7 @@ Object.assign(articleDatabase, {
                         </div>
                         <div class="help_rich_text">
                             <p>&nbsp;</p>
-<div style="text-align: justify;"><span style="font-size: 11pt;">赛盈分销平台在收到下单请求后，赛盈海外仓将在<span style="color: #000000;"><strong>24小时内出物流单号，2-8天内即可实现妥投</strong></span>。关于赛盈分销平台各个发货区域的物流解决方案，具体如下：</span></div>
+<div style="text-align: justify;"><span style="font-size: 11pt;">赛盈分销平台在收到下单请求后，赛盈海外仓将在<span style="color: #000000;"><strong>24小时内出物流单号，2-8天内即可实现妥投</strong></span>。关于赛盈分销平台各个发货区域的物流解决方案，具体���下：</span></div>
 ... (truncated for brevity) ...
     `,
   },
@@ -547,7 +547,7 @@ const categories = [
     subcategories: [
       {
         key: 'order-rules',
-        title: '订单规则',
+        title: '订单���则',
         articles: [{ id: 'hp123001' }],
       },
       {
@@ -591,7 +591,7 @@ const categories = [
   },
   {
     key: 'payment',
-    title: '支付问题',
+    title: '支���问题',
     subcategories: [
       {
         key: 'payment-fee',
@@ -706,7 +706,8 @@ onMounted(() => {
 
 .faq-container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1500px;
+  min-width: 1150px;
   margin: 0 auto;
   padding: 0 16px;
   box-sizing: border-box;
@@ -910,76 +911,82 @@ onMounted(() => {
    Content Wrapper Layout
    ============================================================ */
 .faq-content-wrapper {
-  display: grid;
-  grid-template-columns: 240px 1fr;
-  gap: 24px;
+  overflow: hidden;
+  clear: both;
 }
 
 /* ============================================================
    Left Sidebar
    ============================================================ */
 .faq-left-sidebar {
-  background: #fff;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
-  height: fit-content;
+  background: #ffffff;
+  width: 240px;
+  float: left;
 }
 
 .faq-sidebar-title {
   font-size: 16px;
-  font-weight: 600;
-  margin: 0 0 16px;
-  color: #111827;
+  font-weight: 700;
+  color: #333333;
+  padding: 20px 20px 5px;
+  margin: 0;
 }
 
 .faq-category-list {
   list-style: none;
-  padding: 0;
+  padding: 10px 0;
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
 }
 
 .faq-category-item {
   margin: 0;
+  display: list-item;
 }
 
 .faq-category-link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: inline-block;
   width: 100%;
-  padding: 10px 12px;
-  color: #374151;
+  height: 46px;
+  line-height: 46px;
+  padding-left: 20px;
+  padding-right: 40px;
+  background-color: #fbead5;
+  color: #333333;
   text-decoration: none;
-  border-radius: 6px;
   cursor: pointer;
-  transition: all 0.2s ease;
-  font-size: 14px;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 1px;
+  font-size: inherit;
   border: none;
-  background: transparent;
   font-family: inherit;
   text-align: left;
 }
 
 .faq-category-link:hover {
-  background: #f3f4f6;
-  color: #cb261c;
+  background-color: #fbead5;
+  color: #333333;
 }
 
 .faq-category-item.is-active .faq-category-link {
-  background: #f3f4f6;
-  color: #cb261c;
-  font-weight: 600;
+  background-color: #cb261c;
+  color: #ffffff;
 }
 
 .faq-icon-down {
-  display: inline-block;
-  font-size: 10px;
-  margin-left: 8px;
-  transition: transform 0.2s ease;
+  position: absolute;
+  right: 20px;
+  top: 0;
+  font-family: layui-icon;
+  font-size: 12px;
+  line-height: 46px;
+  cursor: pointer;
+  transition: transform 0.4s;
+  user-select: none;
+  white-space: nowrap;
 }
 
 .faq-category-item.is-active .faq-icon-down {
@@ -988,48 +995,43 @@ onMounted(() => {
 
 .faq-subcategory-list {
   list-style: none;
-  padding: 0 0 0 12px;
-  margin: 8px 0 0;
-  display: block;
-  animation: slideDown 0.2s ease;
+  padding: 0 20px;
+  margin: 0;
+  display: none;
 }
 
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    max-height: 0;
-    overflow: hidden;
-  }
-  to {
-    opacity: 1;
-    max-height: 500px;
-  }
+.faq-category-item.is-active .faq-subcategory-list {
+  display: block;
 }
 
 .faq-subcategory-item {
-  margin: 0 0 4px;
+  margin: 0;
   list-style: none;
+  display: list-item;
 }
 
 .faq-subcategory-link {
-  display: block;
-  padding: 8px 12px;
-  color: #6b7280;
+  display: inline-block;
+  width: 100%;
+  height: 46px;
+  line-height: 46px;
+  padding: 0;
+  color: #333333;
   text-decoration: none;
-  border-radius: 4px;
-  font-size: 13px;
-  transition: all 0.2s ease;
+  cursor: pointer;
+  transition: all 0.3s;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: inherit;
 }
 
 .faq-subcategory-link:hover {
   color: #cb261c;
-  background: #f9fafb;
 }
 
 .faq-subcategory-item.is-active .faq-subcategory-link {
   color: #cb261c;
-  background: #fef2f0;
-  font-weight: 600;
 }
 
 /* ============================================================
@@ -1037,9 +1039,9 @@ onMounted(() => {
    ============================================================ */
 .faq-right-content {
   background: #fff;
-  border-radius: 8px;
   padding: 32px;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+  margin-left: 260px;
+  min-height: 400px;
 }
 
 .faq-breadcrumb {
@@ -1322,12 +1324,12 @@ onMounted(() => {
    Responsive Design
    ============================================================ */
 @media (max-width: 1024px) {
-  .faq-content-wrapper {
-    grid-template-columns: 1fr;
-  }
-
   .faq-left-sidebar {
     display: none;
+  }
+
+  .faq-right-content {
+    margin-left: 0;
   }
 }
 
@@ -1350,6 +1352,7 @@ onMounted(() => {
 
   .faq-right-content {
     padding: 20px;
+    margin-left: 0;
   }
 
   .faq-article-title {

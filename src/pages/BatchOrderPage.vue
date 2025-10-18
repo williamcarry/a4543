@@ -1,207 +1,209 @@
 <template>
-  <div class="bg-white min-h-screen">
-    <!-- 主容器 -->
-    <div class="bg-white overflow-hidden">
+  <div class="mx-auto w-full max-w-[1500px] md:min-w-[1150px] px-4 md:px-0">
+    <div class="bg-white min-h-screen">
+      <!-- 主容器 -->
+      <div class="bg-white overflow-hidden">
 
-      <!-- 上传区域和导入步骤 -->
-      <div class="flex bg-white">
-        <!-- 左侧：上传区域 -->
-        <div
-          class="flex flex-col items-center justify-center w-3/5 bg-red-50 rounded-lg p-5 mr-4"
-          style="background-color: rgb(255, 249, 249); border-radius: 10px; padding: 20px 30px;"
-          @dragover="dragOver = true"
-          @dragleave="dragOver = false"
-          @drop="handleFileUpload"
-        >
-          <i class="text-6xl text-primary mb-2" style="color: rgb(203, 38, 28); font-size: 48px;">☁️</i>
-          <p class="text-center mb-3 text-slate-500" style="color: rgb(153, 153, 153); margin-top: 4px; margin-bottom: 8px; line-height: 30px;">点击上传文件，或将文件拖拽到此处</p>
-          <button
-            @click="$refs.fileInput?.click()"
-            class="px-6 text-white rounded font-medium"
-            style="background-color: rgb(203, 38, 28); height: 44px; line-height: 44px; font-size: 16px; border-radius: 5px; padding: 0 25px; cursor: pointer; transition: 0.3s;"
+        <!-- 上传区域和导入步骤 -->
+        <div class="flex bg-white">
+          <!-- 左侧：上传区域 -->
+          <div
+            class="flex flex-col items-center justify-center w-3/5 bg-red-50 rounded-lg p-5 mr-4"
+            style="background-color: rgb(255, 249, 249); border-radius: 10px; padding: 20px 30px;"
+            @dragover="dragOver = true"
+            @dragleave="dragOver = false"
+            @drop="handleFileUpload"
           >
-            上传文件
-          </button>
-          <p class="mt-3" style="color: rgb(153, 153, 153);"></p>
-          <input
-            ref="fileInput"
-            type="file"
-            accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-            @change="handleFileChange"
-            class="hidden"
-          />
+            <i class="text-6xl text-primary mb-2" style="color: rgb(203, 38, 28); font-size: 48px;">☁️</i>
+            <p class="text-center mb-3 text-slate-500" style="color: rgb(153, 153, 153); margin-top: 4px; margin-bottom: 8px; line-height: 30px;">点击上传文件，或将文件拖拽到此处</p>
+            <button
+              @click="triggerFileInput"
+              class="px-6 text-white rounded font-medium"
+              style="background-color: rgb(203, 38, 28); height: 44px; line-height: 44px; font-size: 16px; border-radius: 5px; padding: 0 25px; cursor: pointer; transition: 0.3s;"
+            >
+              上传文件
+            </button>
+            <p class="mt-3" style="color: rgb(153, 153, 153);"></p>
+            <input
+              ref="fileInput"
+              type="file"
+              accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+              @change="handleFileChange"
+              class="hidden"
+            />
+          </div>
+
+          <!-- 右侧：导入步骤 -->
+          <div
+            class="w-2/5 bg-slate-100 rounded-lg p-5"
+            style="background-color: rgb(243, 243, 243); border-radius: 10px; padding: 20px 30px; width: calc(45% - 16px);"
+          >
+            <h2 class="text-slate-900 font-medium mb-4" style="color: rgb(51, 51, 51); font-weight: 500; line-height: 34px;">导入步骤：</h2>
+            <ul class="space-y-1" style="padding-left: 20px;">
+              <li class="mb-1" style="margin-bottom: 4px; display: list-item;">
+                下载模板
+                <span
+                  @click="downloadTemplate"
+                  class="inline-block cursor-pointer transition"
+                  style="border: 1px solid rgb(203, 38, 28); color: rgb(203, 38, 28); display: inline-block; line-height: 30px; margin-left: 8px; padding: 0 16px; border-radius: 3px;"
+                >
+                  下载模板
+                </span>
+              </li>
+              <li class="mb-1" style="margin-bottom: 4px; display: list-item;">将订单信息按要求粘贴到模板中；</li>
+              <li class="mb-1" style="margin-bottom: 4px; display: list-item;">上传文件；</li>
+              <li class="mb-1" style="margin-bottom: 4px; display: list-item;">
+                <a href="https://www.saleyee.com/guide/hp853544.html" target="_blank" class="hover:underline" style="color: rgb(203, 38, 28); text-decoration: underline; transition: 0.3s;">
+                  去了解批量下单步骤；
+                </a>
+              </li>
+              <li class="mb-1" style="margin-bottom: 4px; display: list-item;">单次最多1000条数据。</li>
+            </ul>
+          </div>
         </div>
 
-        <!-- 右侧：导入步骤 -->
-        <div
-          class="w-2/5 bg-slate-100 rounded-lg p-5"
-          style="background-color: rgb(243, 243, 243); border-radius: 10px; padding: 20px 30px; width: calc(45% - 16px);"
-        >
-          <h2 class="text-slate-900 font-medium mb-4" style="color: rgb(51, 51, 51); font-weight: 500; line-height: 34px;">导入步骤：</h2>
-          <ul class="space-y-1" style="padding-left: 20px;">
-            <li class="mb-1" style="margin-bottom: 4px; display: list-item;">
-              下载模板
-              <span
-                @click="downloadTemplate"
-                class="inline-block cursor-pointer transition"
-                style="border: 1px solid rgb(203, 38, 28); color: rgb(203, 38, 28); display: inline-block; line-height: 30px; margin-left: 8px; padding: 0 16px; border-radius: 3px;"
-              >
-                下载模板
+        <!-- 下单说明 -->
+        <div class="px-6 py-6 mt-6 rounded-lg" style="background-color: rgb(243, 243, 243);">
+          <h3 class="text-sm font-bold text-slate-900 mb-4">下单说明</h3>
+          <ul class="space-y-2 text-sm text-slate-700 pl-4">
+            <li class="list-decimal">一件代发订单仅��持"free shipping"配送。</li>
+            <li class="list-decimal">
+              发货区域为英国/欧盟需要填写VAT税号，
+              <a href="https://www.saleyee.com/help/14" target="_blank" class="text-primary hover:underline font-medium">
+                去了解VAT税后政策
+              </a>
+              。
+            </li>
+            <li class="list-decimal">
+              【售后保障服务已于2022年1月4日上线，为保障您的售后权益，请您务必使用2022年1月4日之后更新的Excel模板。请注意，批量下单方式售后保障服务不会默认购买，需要您自行填写方可购买成功】
+            </li>
+            <li class="list-decimal">
+              <span class="text-primary font-medium">
+                当您的销售平台为Temu，若选择非「自提」进行下单，平台不会屏蔽Fedex物流进行发货，建议您使用「自提」的方式进行下单。
               </span>
             </li>
-            <li class="mb-1" style="margin-bottom: 4px; display: list-item;">将订单信息按要求粘贴到模板中；</li>
-            <li class="mb-1" style="margin-bottom: 4px; display: list-item;">上传文件；</li>
-            <li class="mb-1" style="margin-bottom: 4px; display: list-item;">
-              <a href="https://www.saleyee.com/guide/hp853544.html" target="_blank" class="hover:underline" style="color: rgb(203, 38, 28); text-decoration: underline; transition: 0.3s;">
-                去了解批量下单步骤；
-              </a>
+            <li class="list-decimal">
+              <span class="text-primary font-medium">
+                "自提订单"请在创建完成后手动上传面单文件，否则订单无法发货
+              </span>
             </li>
-            <li class="mb-1" style="margin-bottom: 4px; display: list-item;">单次最多1000条数据。</li>
           </ul>
         </div>
-      </div>
 
-      <!-- 下单说明 -->
-      <div class="px-6 py-6 mt-6 rounded-lg" style="background-color: rgb(243, 243, 243);">
-        <h3 class="text-sm font-bold text-slate-900 mb-4">下单说明</h3>
-        <ul class="space-y-2 text-sm text-slate-700 pl-4">
-          <li class="list-decimal">一件代发订单仅��持"free shipping"配送。</li>
-          <li class="list-decimal">
-            发货区域为英国/欧盟需要填写VAT税号，
-            <a href="https://www.saleyee.com/help/14" target="_blank" class="text-primary hover:underline font-medium">
-              去了解VAT税后政策
-            </a>
-            。
-          </li>
-          <li class="list-decimal">
-            【售后保障服务已于2022年1月4日上线，为保障您的售后权益，请您务必使用2022年1月4日之后更新的Excel模板。请注意，批量下单方式售后保障服务不会默认购买，需要您自行填写方可购买成功】
-          </li>
-          <li class="list-decimal">
-            <span class="text-primary font-medium">
-              当您的销售平台为Temu，若选择非「自提」进行下单，平台不会屏蔽Fedex物流进行发货，建议您使用「自提」的方式进行下单。
-            </span>
-          </li>
-          <li class="list-decimal">
-            <span class="text-primary font-medium">
-              "自提订单"请在创建完成后手动上传面单文件，否则订单无法发货
-            </span>
-          </li>
-        </ul>
-      </div>
+        <!-- 搜索过滤区 -->
+        <div class="px-6 py-6">
+          <form @submit.prevent="searchRecords" class="space-y-4">
+            <div class="flex items-end gap-6">
+              <!-- 上传时间 -->
+              <div class="flex-1 flex items-center gap-2">
+                <label class="text-sm text-slate-700 whitespace-nowrap">上传时间：</label>
+                <input
+                  v-model="startTime"
+                  type="date"
+                  placeholder="开始日期"
+                  class="px-3 py-2 h-9 border border-slate-300 rounded text-sm bg-white flex-1"
+                />
+                <span class="text-slate-400">-</span>
+                <input
+                  v-model="endTime"
+                  type="date"
+                  placeholder="结束日期"
+                  class="px-3 py-2 h-9 border border-slate-300 rounded text-sm bg-white flex-1"
+                />
+              </div>
 
-      <!-- 搜索过滤区 -->
-      <div class="px-6 py-6">
-        <form @submit.prevent="searchRecords" class="space-y-4">
-          <div class="flex items-end gap-6">
-            <!-- 上传时间 -->
-            <div class="flex-1 flex items-center gap-2">
-              <label class="text-sm text-slate-700 whitespace-nowrap">上传时间：</label>
-              <input
-                v-model="startTime"
-                type="date"
-                placeholder="开始日期"
-                class="px-3 py-2 h-9 border border-slate-300 rounded text-sm bg-white flex-1"
-              />
-              <span class="text-slate-400">-</span>
-              <input
-                v-model="endTime"
-                type="date"
-                placeholder="结束日期"
-                class="px-3 py-2 h-9 border border-slate-300 rounded text-sm bg-white flex-1"
-              />
-            </div>
+              <!-- 表名 -->
+              <div class="flex-1 flex items-center gap-2">
+                <label class="text-sm text-slate-700 whitespace-nowrap">表名：</label>
+                <input
+                  v-model="templateName"
+                  type="text"
+                  placeholder=""
+                  class="px-3 py-2 h-9 border border-slate-300 rounded text-sm bg-white flex-1"
+                />
+              </div>
 
-            <!-- 表名 -->
-            <div class="flex-1 flex items-center gap-2">
-              <label class="text-sm text-slate-700 whitespace-nowrap">表名：</label>
-              <input
-                v-model="templateName"
-                type="text"
-                placeholder=""
-                class="px-3 py-2 h-9 border border-slate-300 rounded text-sm bg-white flex-1"
-              />
-            </div>
-
-            <!-- 搜索��钮 -->
-            <button
-              type="submit"
-              class="px-6 py-2 h-9 bg-primary text-white rounded text-sm font-medium hover:bg-primary-dark transition"
-            >
-              搜索
-            </button>
-          </div>
-        </form>
-      </div>
-
-      <!-- 表格区域 -->
-      <div class="px-6 py-4">
-        <div class="overflow-x-auto">
-          <table class="w-full border-collapse">
-            <thead class="bg-slate-100 border-b border-slate-300">
-              <tr>
-                <th class="px-4 py-3 text-left text-sm font-medium text-slate-700 border border-slate-300">上传时间</th>
-                <th class="px-4 py-3 text-left text-sm font-medium text-slate-700 border border-slate-300">表名</th>
-                <th class="px-4 py-3 text-left text-sm font-medium text-slate-700 border border-slate-300">状态</th>
-                <th class="px-4 py-3 text-left text-sm font-medium text-slate-700 border border-slate-300">操作</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-slate-200">
-              <tr v-for="record in paginatedRecords" :key="record.id" class="hover:bg-slate-50 transition">
-                <td class="px-4 py-3 border border-slate-300 text-sm text-slate-700">{{ formatDate(record.uploadTime) }}</td>
-                <td class="px-4 py-3 border border-slate-300 text-sm text-slate-700">{{ record.name }}</td>
-                <td class="px-4 py-3 border border-slate-300 text-sm">
-                  <span :class="getStatusClass(record.status)">{{ record.status }}</span>
-                </td>
-                <td class="px-4 py-3 border border-slate-300 text-sm">
-                  <button @click="viewDetail(record.id)" class="text-primary hover:text-primary-dark font-medium">
-                    查看
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- 空状态 -->
-        <div v-if="paginatedRecords.length === 0" class="text-center py-8 text-slate-500">
-          暂无模板记录
-        </div>
-
-        <!-- 分页 -->
-        <div v-if="filteredRecords.length > 0" class="mt-4 flex items-center justify-between">
-          <div class="text-sm text-slate-600">
-            共 {{ totalRecords }} 条 | 第 {{ currentPage }} 页
-          </div>
-          <div class="flex items-center gap-2">
-            <button
-              @click="previousPage"
-              :disabled="currentPage === 1"
-              class="px-3 py-1 text-sm border border-slate-300 rounded hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition"
-            >
-              上一页
-            </button>
-            <div class="flex items-center gap-1">
+              <!-- 搜索��钮 -->
               <button
-                v-for="page in paginationRange"
-                :key="page"
-                @click="goToPage(page)"
-                :class="[
-                  'px-3 py-1 text-sm rounded transition',
-                  currentPage === page
-                    ? 'bg-primary text-white border border-primary'
-                    : 'border border-slate-300 hover:bg-slate-100'
-                ]"
+                type="submit"
+                class="px-6 py-2 h-9 bg-primary text-white rounded text-sm font-medium hover:bg-primary-dark transition"
               >
-                {{ page }}
+                搜索
               </button>
             </div>
-            <button
-              @click="nextPage"
-              :disabled="currentPage === totalPages"
-              class="px-3 py-1 text-sm border border-slate-300 rounded hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition"
-            >
-              下一页
-            </button>
+          </form>
+        </div>
+
+        <!-- 表格区域 -->
+        <div class="px-6 py-4">
+          <div class="overflow-x-auto">
+            <table class="w-full border-collapse">
+              <thead class="bg-slate-100 border-b border-slate-300">
+                <tr>
+                  <th class="px-4 py-3 text-left text-sm font-medium text-slate-700 border border-slate-300">上传时间</th>
+                  <th class="px-4 py-3 text-left text-sm font-medium text-slate-700 border border-slate-300">表名</th>
+                  <th class="px-4 py-3 text-left text-sm font-medium text-slate-700 border border-slate-300">状态</th>
+                  <th class="px-4 py-3 text-left text-sm font-medium text-slate-700 border border-slate-300">操作</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200">
+                <tr v-for="record in paginatedRecords" :key="record.id" class="hover:bg-slate-50 transition">
+                  <td class="px-4 py-3 border border-slate-300 text-sm text-slate-700">{{ formatDate(record.uploadTime) }}</td>
+                  <td class="px-4 py-3 border border-slate-300 text-sm text-slate-700">{{ record.name }}</td>
+                  <td class="px-4 py-3 border border-slate-300 text-sm">
+                    <span :class="getStatusClass(record.status)">{{ record.status }}</span>
+                  </td>
+                  <td class="px-4 py-3 border border-slate-300 text-sm">
+                    <button @click="viewDetail(record.id)" class="text-primary hover:text-primary-dark font-medium">
+                      查看
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 空状态 -->
+          <div v-if="paginatedRecords.length === 0" class="text-center py-8 text-slate-500">
+            暂无模板记录
+          </div>
+
+          <!-- 分页 -->
+          <div v-if="filteredRecords.length > 0" class="mt-4 flex items-center justify-between">
+            <div class="text-sm text-slate-600">
+              共 {{ totalRecords }} 条 | 第 {{ currentPage }} 页
+            </div>
+            <div class="flex items-center gap-2">
+              <button
+                @click="previousPage"
+                :disabled="currentPage === 1"
+                class="px-3 py-1 text-sm border border-slate-300 rounded hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition"
+              >
+                上一页
+              </button>
+              <div class="flex items-center gap-1">
+                <button
+                  v-for="page in paginationRange"
+                  :key="page"
+                  @click="goToPage(page)"
+                  :class="[
+                    'px-3 py-1 text-sm rounded transition',
+                    currentPage === page
+                      ? 'bg-primary text-white border border-primary'
+                      : 'border border-slate-300 hover:bg-slate-100'
+                  ]"
+                >
+                  {{ page }}
+                </button>
+              </div>
+              <button
+                @click="nextPage"
+                :disabled="currentPage === totalPages"
+                class="px-3 py-1 text-sm border border-slate-300 rounded hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition"
+              >
+                下一页
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -437,7 +439,15 @@ const nextPage = () => {
     currentPage.value++
   }
 }
+
+const triggerFileInput = () => {
+  if (fileInput.value) {
+    fileInput.value.click();
+  }
+};
+
 </script>
 
 <style scoped>
+/* 可以根据需要添加自定义样式 */
 </style>

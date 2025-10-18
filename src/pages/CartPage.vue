@@ -2,7 +2,7 @@
   <div class="min-h-screen flex flex-col">
     <SiteHeader />
     <div class="flex-1 bg-slate-50">
-      <div class="mx-auto w-full max-w-[1500px] md:w-[80%] md:min-w-[1200px] px-4 md:px-0 py-8">
+      <div class="mx-auto w-full max-w-[1500px] md:w-[80%] md:min-w-[1150px] px-4 md:px-0 py-8">
         <div class="mb-6">
           <h1 class="text-2xl font-semibold text-slate-900 mb-4">购物车</h1>
           <div class="flex gap-0 border-b border-slate-200">

@@ -2,7 +2,7 @@
   <div class="min-h-screen flex flex-col">
     <SiteHeader />
     <div class="flex-1 bg-white">
-      <div class="mx-auto w-full max-w-[1500px] md:w-[80%] md:min-w-[1200px] px-4 md:px-0">
+      <div class="mx-auto w-full max-w-[1500px] md:min-w-[1150px] px-4 md:px-0">
         <div class="flex min-h-screen">
           <!-- 左侧导航菜单 -->
           <div class="hidden md:block shrink-0 border-r border-slate-200" :style="{ width: 'var(--category-width)' }">
@@ -13,7 +13,7 @@
                 class="w-full text-slate-900 px-4 py-3 font-medium flex items-center gap-2 border-b border-slate-200 hover:bg-slate-50 transition cursor-pointer"
               >
                 <User class="h-5 w-5" />
-                <span>个人中���</span>
+                <span>个人中心</span>
                 <ChevronDown
                   class="h-4 w-4 ml-auto transition-transform duration-300"
                   :style="{ transform: expandedGroups.personal ? 'rotate(0deg)' : 'rotate(-90deg)' }"
@@ -139,7 +139,7 @@
               </div>
             </div>
 
-            <!-- 营销���动组 -->
+            <!-- 营销活动组 -->
             <div>
               <button
                 @click="expandedGroups.marketing = !expandedGroups.marketing"
@@ -210,7 +210,7 @@
                 class="w-full text-slate-900 px-4 py-3 font-medium flex items-center gap-2 border-b border-slate-200 hover:bg-slate-50 transition cursor-pointer"
               >
                 <Users class="h-5 w-5" />
-                <span>客户服��</span>
+                <span>客户服务</span>
                 <ChevronDown
                   class="h-4 w-4 ml-auto transition-transform duration-300"
                   :style="{ transform: expandedGroups.customers ? 'rotate(0deg)' : 'rotate(-90deg)' }"
@@ -316,7 +316,7 @@
 
           </div>
 
-          <!-- 右侧主��内容 -->
+          <!-- 右侧主内容 -->
           <div class="flex-1 min-w-0 p-6">
             <!-- 顶部标题栏 -->
             <div class="flex items-center justify-between mb-6">
@@ -348,7 +348,7 @@
 
               <!-- VIP等级 -->
               <div class="p-6 border-b border-slate-200">
-                <h3 class="font-semibold text-slate-900 mb-4">金红元 ���★★★★</h3>
+                <h3 class="font-semibold text-slate-900 mb-4">金红元 VIP★★★★</h3>
                 <div class="grid grid-cols-5 gap-4">
                   <div class="text-center">
                     <div class="inline-block bg-primary text-white px-3 py-1 rounded text-sm mb-2">
@@ -420,7 +420,7 @@
               <!-- 商品销售排行 -->
               <div class="p-6 border-b border-slate-200">
                 <div class="flex items-center justify-between mb-4">
-                  <h3 class="font-semibold text-slate-900">商品销售排���</h3>
+                  <h3 class="font-semibold text-slate-900">商品销售排行</h3>
                   <div class="text-sm text-slate-500">2025-09</div>
                 </div>
                 <el-table :data="topProducts" style="width: 100%" size="small">
@@ -431,7 +431,7 @@
                   <el-table-column prop="ratio" label="占比" />
                 </el-table>
                 <div class="mt-4 flex gap-2">
-                  <el-button type="primary" size="small">详��</el-button>
+                  <el-button type="primary" size="small">详查</el-button>
                   <el-button size="small">下载</el-button>
                 </div>
               </div>
@@ -475,7 +475,7 @@
             <!-- 订单通知面板 -->
             <OrderNotificationPage v-else-if="activeMenu === 'order-notification'" />
 
-            <!-- 售���通知面板 -->
+            <!-- 售后通知面板 -->
             <AfterSalesNotificationPage v-else-if="activeMenu === 'after-sales-notification'" />
 
             <!-- 平台消息面板 -->
@@ -484,7 +484,7 @@
             <!-- 商品管理面板 -->
             <ProductManagementPage v-else-if="activeMenu === 'products'" />
 
-            <!-- 刊登推送列表面板 -->
+            <!-- 刊登推���列表面板 -->
             <ListingPushPage v-else-if="activeMenu === 'listing-push'" />
 
             <!-- 刊登商品列表面板 -->
@@ -517,7 +517,7 @@
             <!-- 平台载单面板 -->
             <PlatformOrderPage v-else-if="activeMenu === 'platform-orders'" />
 
-            <!-- 平台授权面板 -->
+            <!-- 平台授权面�� -->
             <PlatformAuthPage v-else-if="activeMenu === 'platform-auth'" />
 
             <!-- 载单设置面板 -->
@@ -635,24 +635,24 @@ const menuLabels: Record<string, string> = {
   'marketing-activity': '营销活动',
   'order-notification': '订单通知',
   'after-sales-notification': '售后通知',
-  'platform-message': '平台消息',
+  'platform-message': '��台消息',
   'shopping-cart': '购物车',
   products: '商品管理',
   'listing-push': '刊登推送列表',
-  'listing-products': '刊登商��列表',
+  'listing-products': '刊登商品列表',
   'brand-auth': '品牌授权',
   'product-notification': '商品通知',
   sales: '返现活动',
   'inquiry-order': '咨价单',
   orders: '我的订单',
-  'platform-orders': '平��载单',
+  'platform-orders': '平台载单',
   'batch-orders': '批量下单',
   'exception-orders': '异常订单',
-  'after-sales-management': '���后管理',
+  'after-sales-management': '售后管理',
   'download-center': '下载中心',
   customers: '客户服务',
   'my-balance': '我的余额',
-  'my-invoices': '我��账单',
+  'my-invoices': '我的账单',
   'my-vouchers': '我的采购券',
   'payment-account': '支付账号管理',
   'platform-auth': '平台授权',

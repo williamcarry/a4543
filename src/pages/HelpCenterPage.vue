@@ -442,7 +442,7 @@ const guides: GuideItem[] = [
 
 const tools: ToolItem[] = [
   {
-    title: '平台授权',
+    title: '平���授权',
     href: 'https://www.saleyee.com/user/authorizationing.html',
     image: 'https://resource.saleyee.com/UploadFiles/Images/2021/202111/d87015dd-77e7-4c86-859b-0253b815cc2b.png',
   },
@@ -568,7 +568,8 @@ function extractFaqId(href: string): string {
 
 .hc-container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1500px;
+  min-width: 1150px;
   margin: 0 auto;
   padding: 0 16px;
 }
@@ -1122,9 +1123,10 @@ main {
   text-align: center;
 }
 
-@media (max-width: 1199px) {
+@media (max-width: 1149px) {
   .hc-container {
     max-width: 960px;
+    min-width: auto;
   }
 
   .hc-header__nav {
